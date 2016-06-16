@@ -1,5 +1,0 @@
-INDEX VERSION 1.127
-C:\Users\Nicole\eclipse\workspace\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\2545541327.index
-\NDPTAssn1\src
-C:\Users\Nicole\eclipse\workspace\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\3740038044.index
-\NDPTAssn1\src

@@ -1,7 +1,0 @@
-		<div class="row"><br/></div>
-		<footer class="navbar navbar-fixed-bottom">
-            <p>&copy; Copyright ${currentYear} Nicole Dahlquist &amp; 
-                Peter Thomson</p>
-        </footer>
-    </body>
-</html>

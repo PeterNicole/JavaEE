@@ -1,6 +1,0 @@
-		<footer style="bottom:0; position:fixed">
-            <p>&copy; Copyright ${currentYear} Nicole Dahlquist &amp; 
-                Peter Thomson</p>
-        </footer>
-    </body>
-</html>

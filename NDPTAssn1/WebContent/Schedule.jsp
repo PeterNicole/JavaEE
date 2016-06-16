@@ -8,35 +8,56 @@
  <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Schedule for ${teamName}</title>
-</head>
-<body>
-	<h1>Schedule for ${teamName}</h1>
-	<table>
+<jsp:include page="Banner.jsp" />
+	<h1>Scheduled Games for ${teamName}</h1>
+	<table class="table table-striped">
 		<tr>
+			<th>Game Date</th>
 			<th>Arena Name</th>
 			<th>Home</th>
 			<th>Visitor</th>
-			<th>Home Score</th>
-			<th>Visitor Score</th>
+			<th style="text-align:center">Home Score</th>
+			<th style="text-align:center">Visitor Score</th>
 			<th>OT</th>
 			<th>SO</th>
 		</tr>
-		<c:forEach var = "game" items = "${schedule}">
+		<c:forEach var = "game" items = "${scheduledGames}">
 			<tr>
+				<td>${game.date}</td>
 				<td>${game.arenaName}</td>	
 				<td>${game.homeTeam}</td>	
 				<td>${game.visitorTeam}</td>	
-				<td>${game.homeScore}</td>	
-				<td>${game.visitorScore}</td>	
+				<td style="text-align:center">${game.homeScore}</td>	
+				<td style="text-align:center">${game.visitorScore}</td>	
 				<td>${game.OT}</td>	
 				<td>${game.SO}</td>					
 			</tr>
 		</c:forEach>
 	</table>
-</body>
-</html>
+	<br/>
+	<h1>Completed Games for ${teamName}</h1>
+	<table class="table table-striped">
+		<tr style="text-align:center">
+			<th>Game Date</th>
+			<th>Arena Name</th>
+			<th>Home</th>
+			<th>Visitor</th>
+			<th style="text-align:center">Home Score</th>
+			<th style="text-align:center">Visitor Score</th>
+			<th>OT</th>
+			<th>SO</th>
+		</tr>
+		<c:forEach var = "game" items = "${completedGames}">
+			<tr>
+				<td>${game.date}</td>
+				<td>${game.arenaName}</td>	
+				<td>${game.homeTeam}</td>	
+				<td>${game.visitorTeam}</td>	
+				<td style="text-align:center">${game.homeScore}</td>	
+				<td style="text-align:center">${game.visitorScore}</td>	
+				<td>${game.OT}</td>	
+				<td>${game.SO}</td>					
+			</tr>
+		</c:forEach>
+	</table>
+<jsp:include page="Footer.jsp" />

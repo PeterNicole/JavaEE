@@ -26,7 +26,7 @@ import persistence.Team;
  * Servlet implementation class TeamServlet
  */
 @WebServlet("/TeamServlet")
-public class TeamServlet extends CustomServlet {
+public class TeamServlet extends LoginServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
@@ -34,25 +34,29 @@ public class TeamServlet extends CustomServlet {
      */
     public TeamServlet() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
+    @Override 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String url = "/Teams.jsp";
-		ServletContext ctx = getServletContext();		
-		LeagueDAO ldao = new LeagueDAO(getConnection(request, "ndahlquist", "password"));
-		ArrayList<Team> teams = new ArrayList<Team>();
-		try {
-			teams = ldao.getTeams();			
-		} 
-		catch (SQLException e) {
-			e.printStackTrace();
+		ServletContext ctx = getServletContext();	
+		getConnection(request, response);
+		if(conn != null){
+			LeagueDAO ldao = new LeagueDAO(conn);
+			
+			ArrayList<Team> teams = new ArrayList<Team>();
+			try {
+				teams = ldao.getTeams();			
+			} 
+			catch (SQLException e) {
+				e.printStackTrace();
 		}
 		request.setAttribute("teams", teams);
 		ctx.getRequestDispatcher(url).forward(request, response);
+		}
 	}
 
 }

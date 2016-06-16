@@ -25,7 +25,7 @@ import persistence.LeagueDAO;
  * Servlet implementation class ScheduleServlet
  */
 @WebServlet("/ScheduleServlet")
-public class ScheduleServlet extends CustomServlet {
+public class ScheduleServlet extends LoginServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
@@ -39,22 +39,38 @@ public class ScheduleServlet extends CustomServlet {
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
+    @Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String url = "/Schedule.jsp";
 		String teamID = request.getParameter("teamID");
 		String teamName = request.getParameter("teamName");
+		int wins = 0;
+		int losses = 0;
+		int ties = 0;
 		ServletContext ctx = getServletContext();		
-		LeagueDAO ldao = new LeagueDAO(getConnection(request, "ndahlquist", "password"));
-		ArrayList<Game> schedule = new ArrayList<Game>();
-		try {
-			schedule = ldao.getGames(teamID);		
-		} 
-		catch (SQLException e) {
-			e.printStackTrace();
-		}
-		request.setAttribute("schedule", schedule);
-		request.setAttribute("teamName", teamName);
-		ctx.getRequestDispatcher(url).forward(request, response);
+		getConnection(request, response);
+		if(conn != null){
+			LeagueDAO ldao = new LeagueDAO(conn);
+			ArrayList<Game> scheduledGames = new ArrayList<Game>();
+			ArrayList<Game> completedGames = new ArrayList<Game>();
+		
+			try {
+				scheduledGames = ldao.getScheduledGames(teamID);		
+				completedGames = ldao.getCompletedGames(teamID);
+				wins = ldao.getWins(teamID);
+				losses = ldao.getLosses(teamID);
+				ties = ldao.getTies(teamID);
+			} 
+			catch (SQLException e) {
+				request.setAttribute("error", "Error loading data: " + e.getMessage());
+			}
+			request.setAttribute("completedGames", completedGames);
+			request.setAttribute("scheduledGames", scheduledGames);
+			request.setAttribute("teamName", teamName);
+			request.setAttribute("wins", wins);
+			request.setAttribute("losses", losses);
+			request.setAttribute("ties", ties);
+			ctx.getRequestDispatcher(url).forward(request, response);
+		}		
 	}
-
 }

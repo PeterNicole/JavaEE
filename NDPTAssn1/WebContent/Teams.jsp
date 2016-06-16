@@ -8,15 +8,9 @@
  <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Teams</title>
-</head>
-<body>
-	<h1>Teams</h1>
-	<table>
+<jsp:include page="Banner.jsp" />
+	<h1>Teams By Standing</h1>
+	<table class="table table-striped">
 		<tr>
 			<th>Team Name</th>
 			<th>League</th>
@@ -25,8 +19,9 @@
 			<th>Head Coach</th>
 			<th>Assistant Coach</th>
 			<th>Manager</th>
-			<th></th>
-			<th></th>
+			<th colspan="2">Wins-Ties-Losses</th>
+			<th colspan="1"></th>
+			<th colspan="1"></th>
 		</tr>
 		<c:forEach var = "team" items = "${teams}">
 			<tr>
@@ -37,22 +32,23 @@
 				<td>${team.headCoach}</td>	
 				<td>${team.asstCoach}</td>	
 				<td>${team.manager}</td>	
+				<td style="text-align:right">${team.wins}-${team.ties}-${team.losses}</td>
+				<td></td>
 				<td>
-					<a href="<c:url value='/RosterServlet'>
+					<a class="btn btn-primary" href="<c:url value='/RosterServlet'>
 								<c:param name='teamID' value='${team.teamID}'></c:param>
 								<c:param name='teamName' value='${team.name}'></c:param>
-							</c:url>">View Roster
+							</c:url>">Roster
 					</a>							
 				</td>		
 				<td>
-					<a href="<c:url value='/ScheduleServlet'>
+					<a class="btn btn-primary" href="<c:url value='/ScheduleServlet'>
 								<c:param name='teamID' value='${team.teamID}'></c:param>
 								<c:param name='teamName' value='${team.name}'></c:param>
-							</c:url>">View Schedule
+							</c:url>">Schedule
 					</a>							
 				</td>			
 			</tr>
 		</c:forEach>
 	</table>
-</body>
-</html>
+<jsp:include page="Footer.jsp" />

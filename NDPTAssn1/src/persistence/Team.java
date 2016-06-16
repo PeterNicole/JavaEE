@@ -11,7 +11,7 @@ package persistence;
 /**
  * Class representing a team in the leagueDB
  */
-public class Team {
+public class Team implements Comparable<Team>{
 
 	private String teamID;
 	private String league;
@@ -21,6 +21,9 @@ public class Team {
 	private String headCoach;
 	private String asstCoach;
 	private String manager;
+	private int wins;
+	private int ties;
+	private int losses;
 	
 	
 	// getters and setters
@@ -72,7 +75,36 @@ public class Team {
 	public void setManager(String manager) {
 		this.manager = manager;
 	}
+	
+	public int getWins() {
+		return wins;
+	}
+	public void setWins(int wins) {
+		this.wins = wins;
+	}
+	public int getTies() {
+		return ties;
+	}
+	public void setTies(int ties) {
+		this.ties = ties;
+	}
 
+	public int getLosses() {
+		return losses;
+	}
+	public void setLosses(int losses) {
+		this.losses = losses;
+	}
 	
-	
+	@Override
+	public int compareTo(Team o) {
+		int result = o.getWins() - wins;  // want sorted desc
+		if(result == 0){
+			result = o.getTies() - ties; // want sorted desc
+		}
+		if(result == 0){
+			result = losses - o.getLosses();
+		}
+		return result;
+	}	
 }

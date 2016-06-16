@@ -25,7 +25,7 @@ import persistence.Player;
  * Servlet implementation class RosterServlet
  */
 @WebServlet("/RosterServlet")
-public class RosterServlet extends CustomServlet {
+public class RosterServlet extends LoginServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
@@ -39,21 +39,25 @@ public class RosterServlet extends CustomServlet {
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
+    @Override 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String url = "/Roster.jsp";
 		String teamID = request.getParameter("teamID");
 		String teamName = request.getParameter("teamName");
 		ServletContext ctx = getServletContext();		
-		LeagueDAO ldao = new LeagueDAO(getConnection(request, "ndahlquist", "password"));
-		ArrayList<Player> roster = new ArrayList<Player>();
-		try {
-			roster = ldao.getPlayers(teamID);		
-		} 
-		catch (SQLException e) {
-			e.printStackTrace();
+		getConnection(request, response);
+		if(conn != null){
+			LeagueDAO ldao = new LeagueDAO(conn);
+			ArrayList<Player> roster = new ArrayList<Player>();
+			try {
+				roster = ldao.getPlayers(teamID);		
+			} 
+			catch (SQLException e) {
+				e.printStackTrace();
+			}
+			request.setAttribute("roster", roster);
+			request.setAttribute("teamName", teamName);
+			ctx.getRequestDispatcher(url).forward(request, response);
 		}
-		request.setAttribute("roster", roster);
-		request.setAttribute("teamName", teamName);
-		ctx.getRequestDispatcher(url).forward(request, response);
 	}
 }

@@ -13,6 +13,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Collections;
 
 /**
  * Retrieves persisted data from the LeagueDB Derby Database
@@ -25,27 +26,21 @@ public class LeagueDAO {
 		this.conn = conn;
 	}
 	
-	public ArrayList<Game> getGames(String teamID) throws SQLException{
+	// game queries
+	private ArrayList<Game> getGames(PreparedStatement ps) throws SQLException{
 		ArrayList<Game> games = new ArrayList<Game>();
-		PreparedStatement ps = null;
-		String query = "SELECT gameID, a.arenaName, home, visitor, homeScore, visitorScore, OT, SO " 
-				+ "FROM game g JOIN arena a "
-				+ "ON g.arena = a.arenaID "
-				+ "WHERE home = ? OR visitor = ?";
-		ps = conn.prepareStatement(query);
-		ps.setString(1, teamID);
-		ps.setString(2, teamID);
 		ResultSet rs = ps.executeQuery();
 		while(rs.next()){
 			Game game = new Game();
 			game.setGameID(rs.getInt("gameID"));
+			game.setDate(rs.getDate("gamedate"));
 			game.setArenaName(rs.getString("arenaName"));
 			game.setHomeTeam(rs.getString("home"));
 			game.setVisitorTeam(rs.getString("visitor"));
 			game.setHomeScore(rs.getInt("homeScore"));
-			game.setVisitorScore(rs.getInt("visitorScore"));
-			game.setOT(rs.getBoolean("OT"));
-			game.setSO(rs.getBoolean("SO"));
+			game.setVisitorScore(rs.getInt("visitorScore"));			
+			game.setOT(rs.getBoolean("OT")? "Y":"N");
+			game.setSO(rs.getBoolean("SO")? "Y":"N");
 			games.add(game);
 		}
 		rs.close();
@@ -53,13 +48,61 @@ public class LeagueDAO {
 		return games;
 	}
 	
+	public ArrayList<Game> getGames(String teamID) throws SQLException{
+		PreparedStatement ps = null;
+		String query = "SELECT gameID, gamedate, a.arenaName, home, visitor, homeScore, visitorScore, OT, SO " 
+				+ "FROM game g JOIN arena a "
+				+ "ON g.arena = a.arenaID "
+				+ "WHERE home = ? OR visitor = ?";
+		ps = conn.prepareStatement(query);
+		ps.setString(1, teamID);
+		ps.setString(2, teamID);
+		return getGames(ps);
+	}
+	
+	public ArrayList<Game> getCompletedGames(String teamID) throws SQLException{
+		PreparedStatement ps = null;
+		String query = "SELECT gameID, gamedate, a.arenaName, t1.teamName as home, t2.teamName as visitor, homeScore, visitorScore, OT, SO " 
+				+ "FROM game g JOIN arena a "
+				+ "ON g.arena = a.arenaID "
+				+ "JOIN team t1 "
+				+ "ON g.home = t1.teamID "
+				+ "JOIN team t2 "
+				+ "ON g.visitor = t2.teamID "
+				+ "WHERE (home = ? OR visitor = ?) AND homeScore IS NOT NULL AND visitorScore IS NOT NULL "
+				+ "ORDER BY gamedate";
+		ps = conn.prepareStatement(query);
+		ps.setString(1, teamID);
+		ps.setString(2, teamID);
+		return getGames(ps);
+	}
+	
+	public ArrayList<Game> getScheduledGames(String teamID) throws SQLException{
+		PreparedStatement ps = null;
+		String query = "SELECT gameID, gamedate, a.arenaName, t1.teamName as home, t2.teamName as visitor, homeScore, visitorScore, OT, SO " 
+				+ "FROM game g JOIN arena a "
+				+ "ON g.arena = a.arenaID "
+				+ "JOIN team t1 "
+				+ "ON g.home = t1.teamID "
+				+ "JOIN team t2 "
+				+ "ON g.visitor = t2.teamID "
+				+ "WHERE (home = ? OR visitor = ?) AND homeScore IS NULL AND visitorScore IS NULL "
+				+ "ORDER BY gamedate";
+		ps = conn.prepareStatement(query);
+		ps.setString(1, teamID);
+		ps.setString(2, teamID);
+		return getGames(ps);
+	}
+	
+	// player queries
 	public ArrayList<Player> getPlayers(String teamID) throws SQLException{
 		ArrayList<Player> players = new ArrayList<Player>();
 		PreparedStatement ps = null;
 		String query = "SELECT playerID, lastName, firstName, r.jersey, r.position, height, weight, country "
 				+ "FROM player p JOIN roster r "
 				+ "ON p.playerID = r.player "
-				+ "WHERE r.team = ?";
+				+ "WHERE r.team = ?"
+				+ "ORDER BY r.jersey";
 		ps = conn.prepareStatement(query);
 		ps.setString(1, teamID);
 		ResultSet rs = ps.executeQuery();
@@ -80,6 +123,7 @@ public class LeagueDAO {
 		return players;
 	}
 	
+	// team queries
 	public ArrayList<Team> getTeams() throws SQLException {
 		ArrayList<Team> teams = new ArrayList<Team>();
 		Statement stmt = null;
@@ -93,8 +137,7 @@ public class LeagueDAO {
 				+ "JOIN staff s2 "
 				+ "ON t.asstCoach = s2.staffID "
 				+ "JOIN staff s3 "
-				+ "ON t.manager = s3.staffID "
-				+ "ORDER BY t.teamName";
+				+ "ON t.manager = s3.staffID ";
 		stmt = conn.createStatement();
 		ResultSet rs = stmt.executeQuery(query);
 		while (rs.next()){
@@ -107,29 +150,60 @@ public class LeagueDAO {
 			team.setHeadCoach(rs.getString("headLast") + ", " + rs.getString("headFirst"));
 			team.setAsstCoach(rs.getString("asstLast") + ", " + rs.getString("asstFirst"));
 			team.setManager(rs.getString("manLast") + ", " + rs.getString("manFirst"));
+			team.setWins(getWins(team.getTeamID()));
+			team.setTies(getTies(team.getTeamID()));
+			team.setLosses(getLosses(team.getTeamID()));
 			teams.add(team);
 		}
 		rs.close();
 		stmt.close();
+		Collections.sort(teams);
 		return teams;
 	}
-//	if(homeScore == visitorScore){
-//		ties++;
-//	}
-//	if(homeTeam == id){
-//		if(homeScore > visitorScore){
-//			wins++;
-//		}
-//		else{
-//			losses++;
-//		}
-//	}
-//	else if (visitorTeam == id){
-//		if(visitorScore > homeScore){
-//			wins++;
-//		}
-//		else{
-//			losses++;
-//		}
-//	}
+	
+	// standings queries
+	public int getWins(String teamID) throws SQLException{
+		PreparedStatement ps = null;
+		int wins =0;
+		String query = "SELECT COUNT(*) FROM game g "
+			+ "WHERE (home = ? AND homeScore > visitorScore) "
+			+ "OR (visitor = ? AND visitorScore > homeScore) ";
+		ps = conn.prepareStatement(query);
+		ps.setString(1, teamID);
+		ps.setString(2, teamID);
+		ResultSet rs = ps.executeQuery();
+		rs.next();
+		wins = rs.getInt(1);
+		return wins;
+	}
+	
+	public int getLosses(String teamID) throws SQLException{
+		PreparedStatement ps = null;
+		int losses = 0;
+		String query = "SELECT COUNT(*) FROM game g "
+			+ "WHERE (home = ? AND homeScore < visitorScore) "
+			+ "OR (visitor = ? AND visitorScore < homeScore) ";
+		ps = conn.prepareStatement(query);
+		ps.setString(1, teamID);
+		ps.setString(2, teamID);
+		ResultSet rs = ps.executeQuery();
+		rs.next();
+		losses = rs.getInt(1);
+		return losses;
+	}
+	
+	public int getTies(String teamID) throws SQLException{
+		PreparedStatement ps = null;
+		int ties = 0;
+		String query = "SELECT COUNT(*) FROM game g "
+			+ "WHERE (homeScore IS NOT NULL AND visitorScore IS NOT NULL) "
+			+ "AND ((home = ? OR visitor = ?) AND homeScore = visitorScore) ";
+		ps = conn.prepareStatement(query);
+		ps.setString(1, teamID);
+		ps.setString(2, teamID);
+		ResultSet rs = ps.executeQuery();
+		rs.next();
+		ties = rs.getInt(1);
+		return ties;
+	}
 }

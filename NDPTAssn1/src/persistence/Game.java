@@ -7,6 +7,8 @@
  */
 package persistence;
 
+import java.sql.Date;
+
 /**
  * Class representing a game in the leagueDB
  */
@@ -18,8 +20,9 @@ public class Game {
 	private String visitorTeam;
 	private int homeScore;
 	private int visitorScore;
-	private boolean OT;
-	private boolean SO;
+	private String OT;
+	private String SO;
+	private Date date;
 	
 	// getters and setters
 	public int getGameID() {
@@ -58,17 +61,24 @@ public class Game {
 	public void setVisitorScore(int visitorScore) {
 		this.visitorScore = visitorScore;
 	}
-	public boolean isOT() {
+	public String getOT() {
 		return OT;
 	}
-	public void setOT(boolean oT) {
+	public void setOT(String oT) {
 		OT = oT;
 	}
-	public boolean isSO() {
+	public String getSO() {
 		return SO;
 	}
-	public void setSO(boolean sO) {
+	public void setSO(String sO) {
 		SO = sO;
 	}
+	public Date getDate() {
+		return date;
+	}
+	public void setDate(Date date) {
+		this.date = date;
+	}
+	
 	
 }

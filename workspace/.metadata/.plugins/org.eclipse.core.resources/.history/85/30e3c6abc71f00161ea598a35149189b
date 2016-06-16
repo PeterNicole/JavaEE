@@ -1,0 +1,61 @@
+import java.sql.*;
+
+import javax.sql.*;
+
+import java.util.*;
+
+public class Exercise1 {
+
+	public static void main(String[] args) throws SQLException {
+		Connection conn = getConnection();
+		conn.setAutoCommit(false);
+		String query = "CREATE TABLE ARENA { " +
+				"arenaID INT NOT NULL GENERATED ALWAYS AS IDENTITY PRIMARY KEY," +
+				"arenaName VARCHAR(40) NO NULL," +
+				"streetAddress VARCHAR(50)," + 
+				"city VARCHAR(30)," +
+				"state_province VARCHAR(20)," +
+				"postalCode CHAR(7)," +
+				"country VARCHARE(30)," +
+				"phone CHAR(10)," +
+				"capacity INT };";
+		Statement statement = null;
+		try {
+			if(conn != null)
+			{
+				statement = conn.createStatement();
+				statement.execute(query);
+			}
+		}
+		finally {
+			
+		}
+	}
+	/** 
+	 * Tries to get a connection
+	 * @return a Connection
+	 */
+	
+	@SuppressWarnings("finally")
+	public static Connection getConnection() {
+		Connection conn = null;
+		String userName = "ndahlquist";
+		String password = "password";
+		
+		Properties connectionProps = new Properties();
+		try {
+			connectionProps.put("user", userName);
+			connectionProps.put("password", password);
+			if(conn == null) {
+				conn = DriverManager.getConnection("jdbc:derby://localhost:1527/c:/Users/Nicole/DerbyLeagueDB/LeagueDB;", connectionProps);
+				//conn = DriverManager.getConnection("jdbc:derby://localhost:1527/G:/LeagueDB/leagueDB;", connectionProps);	
+			}			
+		}
+		catch (Exception e){
+			e.printStackTrace();
+		}
+		finally {
+			return conn;
+		}
+	}
+}

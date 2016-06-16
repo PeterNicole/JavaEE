@@ -1,0 +1,6 @@
+		<footer>
+            <p>&copy; Copyright ${currentYear} Nicole Dahlquist &amp; 
+                Peter Thomson</p>
+        </footer>
+    </body>
+</html>

@@ -1,0 +1,18 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<jsp:include page="Banner.jsp" />
+	<fieldset class="form-group">
+		<h1>Database Login</h1>
+		<form name="loginForm" method="POST" action="LoginServlet" >
+			<label>User Name: </label>
+			<input type="text" name="username" />
+			
+			<label>Password: </label>
+			<input type="text" name="password" />
+			
+			<input type="submit" name="login" value="Login"/>
+		</form>
+	</fieldset>
+	<p>${error}</p>
+<jsp:include page="Footer.jsp" />

@@ -14,6 +14,7 @@ import java.sql.Date;
  */
 public class Game {
 
+	//Class scope variables
 	private int gameID;
 	private String arenaName;
 	private String homeTeam;
@@ -78,7 +79,5 @@ public class Game {
 	}
 	public void setDate(Date date) {
 		this.date = date;
-	}
-	
-	
+	}	
 }

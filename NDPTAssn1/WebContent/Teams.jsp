@@ -28,24 +28,26 @@
 				<td>${team.name}</td>	
 				<td>${team.league}</td>	
 				<td>${team.sponsor}</td>	
-				<td>${team.website}</td>	
+				<td><a target="_blank" href="http://${team.website}"/>${team.website }</td>	
 				<td>${team.headCoach}</td>	
 				<td>${team.asstCoach}</td>	
 				<td>${team.manager}</td>	
 				<td style="text-align:right">${team.wins}-${team.ties}-${team.losses}</td>
 				<td></td>
 				<td>
-					<a class="btn btn-primary" href="<c:url value='/RosterServlet'>
-								<c:param name='teamID' value='${team.teamID}'></c:param>
-								<c:param name='teamName' value='${team.name}'></c:param>
-							</c:url>">Roster
+					<a class="btn btn-primary" href="
+						<c:url value='/Roster'>
+							<c:param name='teamID' value='${team.teamID}'></c:param>
+							<c:param name='teamName' value='${team.name}'></c:param>
+						</c:url>">Roster
 					</a>							
 				</td>		
 				<td>
-					<a class="btn btn-primary" href="<c:url value='/ScheduleServlet'>
+					<a class="btn btn-primary" href="
+						<c:url value='/Schedule'>
 								<c:param name='teamID' value='${team.teamID}'></c:param>
 								<c:param name='teamName' value='${team.name}'></c:param>
-							</c:url>">Schedule
+						</c:url>">Schedule
 					</a>							
 				</td>			
 			</tr>

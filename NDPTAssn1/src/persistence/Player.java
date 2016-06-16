@@ -12,6 +12,7 @@ package persistence;
  */
 public class Player {
 
+	//Class scope variables
 	private int playerID;
 	private String lastName;
 	private String firstName;
@@ -69,9 +70,5 @@ public class Player {
 	}
 	public void setCountry(String country) {
 		this.country = country;
-	}
-	
-	
-	
-	
+	}	
 }

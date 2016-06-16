@@ -13,6 +13,7 @@ package persistence;
  */
 public class Team implements Comparable<Team>{
 
+	//Class scope variables
 	private String teamID;
 	private String league;
 	private String sponsor;
@@ -97,6 +98,9 @@ public class Team implements Comparable<Team>{
 	}
 	
 	@Override
+	/**
+	 * Implementation of Comparable interface to allow easy sorting of teams by wins, losses, and ties
+	 */
 	public int compareTo(Team o) {
 		int result = o.getWins() - wins;  // want sorted desc
 		if(result == 0){

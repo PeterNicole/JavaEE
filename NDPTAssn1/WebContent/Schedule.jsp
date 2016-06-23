@@ -9,7 +9,7 @@
     pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <jsp:include page="Banner.jsp" />
-	<h1>Scheduled Games for ${teamName} <a class="btn btn-primary" href="<c:url value='/Team'></c:url>">Teams</a></h1>	
+	<h1>Scheduled Games for ${teamName} <a class="btn btn-primary" style="float:right;" href="<c:url value='/Team'></c:url>">Back to Teams</a></h1>	
 	<table class="table table-striped">
 		<tr>
 			<th>Game Date</th>
@@ -35,9 +35,9 @@
 		</c:forEach>
 	</table>
 	<br/>
-	<h1>Completed Games for ${teamName} <a class="btn btn-primary" href="<c:url value='/Team'></c:url>">Teams</a></h1>
+	<h1>Completed Games for ${teamName} <a class="btn btn-primary" style="float:right;" href="<c:url value='/Team'></c:url>">Back to Teams</a></h1>
 	<table class="table table-striped">
-		<caption> Wins: ${wins} Ties: ${ties} Losses: ${losses}</caption>
+		<caption style="font-weight:bold;padding:15px 0;border: 1px red solid;">Wins:  ${wins}  Ties: ${ties}  Losses: ${losses}</caption>
 		<tr style="text-align:center">
 			<th>Game Date</th>
 			<th>Arena Name</th>

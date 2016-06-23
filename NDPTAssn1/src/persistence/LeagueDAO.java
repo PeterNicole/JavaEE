@@ -160,7 +160,8 @@ public class LeagueDAO {
 				+ "JOIN staff s2 "
 				+ "ON t.asstCoach = s2.staffID "
 				+ "JOIN staff s3 "
-				+ "ON t.manager = s3.staffID ";
+				+ "ON t.manager = s3.staffID "
+				+ "WHERE l.leagueID = 'NHL'";
 		stmt = conn.createStatement();
 		ResultSet rs = stmt.executeQuery(query);
 		while (rs.next()){

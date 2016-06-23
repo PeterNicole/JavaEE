@@ -24,11 +24,9 @@ import javax.servlet.http.HttpSession;
 public class LoginServlet extends DerbyServlet {
 	
 	//Class scope variables and constants
-	final String USER = "pjthomson";
-	//final String USER = "ndahlquist";
+	final String USER = "ndahlquist";
 	final String PASSWORD = "password";
-	final String CONNECTION_STRING = "jdbc:derby://localhost:1527/C:/Users/Peter Thomson/Desktop/School/Courses/Spring 2016/PROG 3060/LeagueDB;";
-	//final String CONNECTION_STRING = "jdbc:derby://localhost:1527/c:/Users/Nicole/DerbyLeagueDB/LeagueDB;";
+	final String CONNECTION_STRING = "jdbc:derby://localhost:1527/c:/Users/Nicole/DerbyLeagueDB/LeagueDB;";
 	
 	private static final long serialVersionUID = 1L;
 	

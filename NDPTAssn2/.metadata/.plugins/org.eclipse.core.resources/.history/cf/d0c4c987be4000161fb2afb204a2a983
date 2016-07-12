@@ -1,0 +1,59 @@
+/**
+ * PROG3060 - James Wong
+ * Nicole Dahlquist & Peter Thomson
+ * Created: July 2, 2016
+ * Team Class - Represents a team object from the LeagueDB
+ */
+package entities;
+
+import javax.persistence.*;
+
+@Entity
+public class Team {
+	private String teamId;
+	private String teamName;
+	private Staff headCoach;
+	private String sponsor;
+	private String website;
+	
+	@Id
+	public String getTeamId() {
+		return teamId;
+	}
+	
+	public void setTeamId(String teamID) {
+		this.teamId = teamID;
+	}
+	
+	public String getTeamName() {
+		return teamName;
+	}
+	
+	public void setTeamName(String teamName) {
+		this.teamName = teamName;
+	}
+	
+	public int getHeadCoach() {
+		return headCoach;
+	}
+	
+	public void setHeadCoach(int headCoach) {
+		this.headCoach = headCoach;
+	}
+
+	public String getSponsor() {
+		return sponsor;
+	}
+
+	public void setSponsor(String sponsor) {
+		this.sponsor = sponsor;
+	}
+
+	public String getWebsite() {
+		return website;
+	}
+
+	public void setWebsite(String website) {
+		this.website = website;
+	}
+}

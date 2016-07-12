@@ -1,0 +1,31 @@
+/**
+ * PROG3060 - James Wong
+ * Nicole Dahlquist & Peter Thomson
+ * Created: July 2, 2016
+ * PlayerStats Class - Represents a player's stats
+ */
+package entities;
+
+import javax.persistence.*;
+
+@Entity
+public class PlayerStats {
+
+	private int statsId;
+	private Player player;
+	private Roster roster;
+	private Schedule schedule;
+	private int gp;
+	private int goals;
+	private int assists;
+	private int plusMinus;
+	private int pim;
+	private int pp;
+	private int sh;
+	private int gwg;
+	private int shots;
+	private int shotPCT;
+	private int suspensions;
+	private int gaa;
+	private int so;
+}

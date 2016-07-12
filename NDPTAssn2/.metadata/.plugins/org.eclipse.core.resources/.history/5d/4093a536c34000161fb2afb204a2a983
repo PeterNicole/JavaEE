@@ -1,0 +1,11 @@
+/**
+ * PROG3060 - James Wong
+ * Nicole Dahlquist & Peter Thomson
+ * Created: July 2, 2016
+ * Game Class - Represents a game object from the LeagueDB
+ */
+package entities;
+
+public class Game {
+
+}

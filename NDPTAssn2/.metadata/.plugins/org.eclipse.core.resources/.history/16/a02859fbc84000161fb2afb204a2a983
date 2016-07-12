@@ -1,0 +1,22 @@
+/**
+ * PROG3060 - James Wong
+ * Nicole Dahlquist & Peter Thomson
+ * Created: July 2, 2016
+ * Arena Class - Represents a arena object from the LeagueDB
+ */
+package entities;
+
+import javax.persistence.*;
+
+@Entity
+public class Arena {
+	private int arenaId;
+	private String arenaName;
+	private String streetAddress;
+	private String city;
+	private String state_province;
+	private String postalCode;
+	private String country;
+	private String phone;
+	private int capacity;
+}

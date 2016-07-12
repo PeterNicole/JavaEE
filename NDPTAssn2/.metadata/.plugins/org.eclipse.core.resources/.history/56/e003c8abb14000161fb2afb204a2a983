@@ -1,0 +1,12 @@
+/**
+ * PROG3060 - James Wong
+ * Nicole Dahlquist & Peter Thomson
+ * Created: July 2, 2016
+ * TeamInfo Class - Represents a team's information
+ */
+
+package entities;
+
+public class TeamInfo {
+
+}

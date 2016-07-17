@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Delete resource &apos;NDPTAssn2/src/persistence.xml&apos;" deleteContents="false" description="Delete resource &apos;NDPTAssn2/src/persistence.xml&apos;" element1="/NDPTAssn2/src/persistence.xml" flags="7" id="org.eclipse.ltk.core.refactoring.delete.resources" resources="1" stamp="1468775529341"/>
+</session>

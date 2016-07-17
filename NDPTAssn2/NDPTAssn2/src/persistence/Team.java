@@ -10,7 +10,7 @@ import java.util.ArrayList;
 
 import javax.persistence.*;
 
-import org.hibernate.mapping.Set;
+import java.util.Set;
 
 @Entity
 public class Team {
@@ -46,7 +46,7 @@ public class Team {
 	}
 	
 	@ManyToOne
-	@JoinColumn(nullable=true)
+	@JoinColumn(name="headCoach", nullable=true)
 	public Staff getHeadCoach() {
 		return headCoach;
 	}
@@ -72,7 +72,7 @@ public class Team {
 	}
 
 	@ManyToOne
-	@JoinColumn(nullable=true)
+	@JoinColumn(name="asstCoach", nullable=true)
 	public Staff getAsstCoach() {
 		return asstCoach;
 	}
@@ -82,7 +82,7 @@ public class Team {
 	}
 
 	@ManyToOne
-	@JoinColumn(nullable=true)
+	@JoinColumn(name="manager", nullable=true)
 	public Staff getManager() {
 		return manager;
 	}
@@ -92,7 +92,7 @@ public class Team {
 	}
 
 	@ManyToOne
-	@JoinColumn(nullable=true)
+	@JoinColumn(name="trainer", nullable=true)
 	public Staff getTrainer() {
 		return trainer;
 	}
@@ -102,7 +102,7 @@ public class Team {
 	}
 
 	@ManyToOne
-	@JoinColumn(nullable=false)
+	@JoinColumn(name="league", nullable=false)
 	public League getLeague() {
 		return league;
 	}
@@ -112,9 +112,13 @@ public class Team {
 	}
 
 	@OneToMany(targetEntity=Roster.class)
-	@JoinColumn(name="team")
+	//@JoinColumn(name="team")
 	public Set getRosters(){
 		return rosters;
+	}
+	
+	public void setRosters(Set rosters){
+		this.rosters = rosters;
 	}
 	
 	@OneToMany(targetEntity=Game.class)
@@ -123,9 +127,17 @@ public class Team {
 		return homeGames;
 	}
 	
+	public void setHomeGames(Set games){
+		this.homeGames = games;
+	}
+	
 	@OneToMany(targetEntity=Game.class)
 	@JoinColumn(name="visitor")
 	public Set getVisitorGames(){
 		return visitorGames;
+	}
+	
+	public void setVisitorGames(Set games){
+		this.visitorGames = games;
 	}
 }

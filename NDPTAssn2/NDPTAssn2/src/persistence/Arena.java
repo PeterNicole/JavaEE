@@ -8,7 +8,7 @@ package persistence;
 
 import javax.persistence.*;
 
-import org.hibernate.mapping.Set;
+import java.util.Set;
 
 @Entity
 public class Arena {
@@ -102,5 +102,9 @@ public class Arena {
 	@JoinColumn(name="arena")
 	public Set getGames(){
 		return games;
+	}
+	
+	public void setGames(Set games){
+		this.games = games;
 	}
 }

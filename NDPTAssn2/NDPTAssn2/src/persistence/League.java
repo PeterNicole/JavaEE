@@ -10,7 +10,7 @@ import java.util.ArrayList;
 
 import javax.persistence.*;
 
-import org.hibernate.mapping.Set;
+import java.util.Set;
 
 @Entity
 public class League {
@@ -53,9 +53,17 @@ public class League {
 		return schedules;
 	}
 	
+	public void setSchedules(Set schedules){
+		this.schedules = schedules;
+	}
+	
 	@OneToMany(targetEntity=Team.class)
 	@JoinColumn(name="league")
 	public Set getTeams(){
 		return teams;
+	}
+	
+	public void setTeams(Set teams){
+		this.teams = teams;
 	}
 }

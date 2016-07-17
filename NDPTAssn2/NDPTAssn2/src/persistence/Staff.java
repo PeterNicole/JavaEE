@@ -8,7 +8,7 @@ package persistence;
 
 import javax.persistence.*;
 
-import org.hibernate.mapping.Set;
+import java.util.Set;
 
 @Entity
 public class Staff {
@@ -135,10 +135,18 @@ public class Staff {
 		return headCoachTeams;
 	}
 	
+	public void setHeadCoachTeams(Set staff){
+		this.headCoachTeams = staff;
+	}
+	
 	@OneToMany(targetEntity=Team.class)
 	@JoinColumn(name="asstCoach")
 	public Set getAsstCoachTeams(){
 		return asstCoachTeams;
+	}
+	
+	public void setAsstCoachTeams(Set staff){
+		this.asstCoachTeams = staff;
 	}
 	
 	@OneToMany(targetEntity=Team.class)
@@ -147,9 +155,17 @@ public class Staff {
 		return managerTeams;
 	}
 	
+	public void setManagerTeams(Set staff){
+		this.managerTeams = staff;
+	}
+	
 	@OneToMany(targetEntity=Team.class)
 	@JoinColumn(name="trainer")
 	public Set getTrainerTeams(){
 		return trainerTeams;
+	}
+	
+	public void setTrainerTeams(Set staff){
+		this.trainerTeams = staff;
 	}
 }

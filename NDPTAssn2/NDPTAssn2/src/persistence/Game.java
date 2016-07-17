@@ -37,7 +37,7 @@ public class Game {
 	}
 	
 	@ManyToOne
-	@JoinColumn(nullable=false)
+	@JoinColumn(name="schedule", nullable=false)
 	public Schedule getSchedule() {
 		return schedule;
 	}
@@ -64,7 +64,7 @@ public class Game {
 	}
 	
 	@ManyToOne
-	@JoinColumn(nullable=false)
+	@JoinColumn(name="arena", nullable=false)
 	public Arena getArena() {
 		return arena;
 	}
@@ -74,7 +74,7 @@ public class Game {
 	}
 	
 	@ManyToOne
-	@JoinColumn(nullable=true)
+	@JoinColumn(name="home", nullable=true)
 	public Team getHome() {
 		return home;
 	}
@@ -84,7 +84,7 @@ public class Game {
 	}
 	
 	@ManyToOne
-	@JoinColumn(nullable=true)
+	@JoinColumn(name="visitor", nullable=true)
 	public Team getVisitor() {
 		return visitor;
 	}

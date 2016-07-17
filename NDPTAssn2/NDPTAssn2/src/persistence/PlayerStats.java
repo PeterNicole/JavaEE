@@ -39,7 +39,7 @@ public class PlayerStats {
 	}
 	
 	@ManyToOne
-	@JoinColumn(nullable=false)
+	@JoinColumn(name="player", nullable=false)
 	public Player getPlayer() {
 		return player;
 	}
@@ -49,7 +49,7 @@ public class PlayerStats {
 	}
 	
 	@ManyToOne
-	@JoinColumn(nullable=false)
+	@JoinColumn(name="roster", nullable=false)
 	public Roster getRoster() {
 		return roster;
 	}
@@ -59,7 +59,7 @@ public class PlayerStats {
 	}
 	
 	@ManyToOne
-	@JoinColumn(nullable=false)
+	@JoinColumn(name="schedule", nullable=false)
 	public Schedule getSchedule() {
 		return schedule;
 	}

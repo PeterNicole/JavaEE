@@ -10,7 +10,7 @@ import java.util.ArrayList;
 
 import javax.persistence.*;
 
-import org.hibernate.mapping.Set;
+import java.util.Set;
 
 @Entity
 public class Roster {
@@ -32,7 +32,7 @@ public class Roster {
 	}
 	
 	@ManyToOne
-	@JoinColumn(nullable=false)
+	@JoinColumn(name="player", nullable=false)
 	public Player getPlayer() {
 		return player;
 	}
@@ -42,7 +42,7 @@ public class Roster {
 	}
 	
 	@ManyToOne
-	@JoinColumn(nullable=false)
+	@JoinColumn(name="team", nullable=false)
 	public Team getTeam() {
 		return team;
 	}
@@ -71,5 +71,9 @@ public class Roster {
 	@JoinColumn(name="roster")
 	public Set getPlayerStats(){
 		return playerStats;
+	}
+	
+	public void setPlayerStats(Set playerStats){
+		this.playerStats = playerStats;
 	}
 }

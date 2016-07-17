@@ -8,7 +8,7 @@ package persistence;
 
 import javax.persistence.*;
 
-import org.hibernate.mapping.Set;
+import java.util.Set;
 
 @Entity
 public class Schedule {
@@ -32,7 +32,7 @@ public class Schedule {
 	}
 	
 	@ManyToOne
-	@JoinColumn(nullable=false)
+	@JoinColumn(name="league", nullable=false)
 	public League getLeague() {
 		return league;
 	}
@@ -71,9 +71,17 @@ public class Schedule {
 		return games;
 	}
 	
+	public void setGames(Set games){
+		this.games = games;
+	}
+	
 	@OneToMany(targetEntity=PlayerStats.class)
 	@JoinColumn(name="schedule")
 	public Set getPlayerStats(){
 		return playerStats;
+	}
+	
+	public void setPlayerStats(Set playerStats){
+		this.playerStats = playerStats;
 	}
 }

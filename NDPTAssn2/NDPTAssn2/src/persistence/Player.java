@@ -11,7 +11,7 @@ import java.util.ArrayList;
 
 import javax.persistence.*;
 
-import org.hibernate.mapping.Set;
+import java.util.Set;
 
 @Entity
 public class Player {
@@ -159,14 +159,22 @@ public class Player {
 	}
 	
 	@OneToMany(targetEntity=Roster.class)
-	@JoinColumn(name="player")
+	//@JoinColumn(name="player")
 	public Set getRosters(){
 		return rosters;
+	}
+	
+	public void setRosters(Set rosters){
+		this.rosters = rosters;
 	}
 	
 	@OneToMany(targetEntity=PlayerStats.class)
 	@JoinColumn(name="player")
 	public Set getPlayerStats(){
 		return playerStats;
+	}
+	
+	public void setPlayerStats(Set playerStats){
+		this.playerStats = playerStats;
 	}
 }

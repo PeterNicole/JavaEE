@@ -19,7 +19,7 @@ public class whateva {
 	private static Session dbSession;
 	
 	public static void main(String[] args) {
-		EntityManagerFactory emf = Persistence.createEntityManagerFactory("LeagueService");
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory("leagueDB");
 		EntityManager em = emf.createEntityManager();
 		em.getTransaction().begin();
 		ArrayList<Team> teams = (ArrayList<Team>)em.createQuery("SELECT t FROM Team t ", Team.class).getResultList();

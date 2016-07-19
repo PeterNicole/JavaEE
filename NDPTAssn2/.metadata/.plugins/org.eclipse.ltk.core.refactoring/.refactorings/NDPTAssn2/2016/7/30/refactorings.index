@@ -11,3 +11,23 @@
 1468775543338	Copy file
 1468775677003	Move 'persistence.xml' to 'META-INF'
 1468776479896	Delete element
+1468894604332	Move folder
+1468894828325	Move 'persistence.xml' to 'lib'
+1468895060597	Move 'persistence.xml' to 'META-INF'
+1468896803003	Delete element
+1468897194926	Move 'META-INF' to 'classes'
+1468897644701	Move 'persistence.xml' to 'WEB-INF'
+1468897660138	Rename resource 'persistence.xml'
+1468897903168	Rename resource 'web.xml'
+1468897933867	Copy file
+1468898134971	Copy compilation unit
+1468898563900	Delete element
+1468898848832	Move 'persistence.xml' to 'classes'
+1468900986884	Move 'persistence.xml' to 'META-INF'
+1468948741230	Delete element
+1468948940589	Delete element
+1468948976940	Delete element
+1468949954079	Copy folder
+1468950628782	Move folder
+1468950636735	Move file
+1468950790337	Move 'persistence.xml' to 'classes'

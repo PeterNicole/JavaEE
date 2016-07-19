@@ -11,6 +11,8 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import javax.servlet.http.HttpSession;
 
 import org.hibernate.Session;
@@ -26,38 +28,20 @@ import org.hibernate.cfg.Configuration;
 public class LeagueDAO {
 
 	//Class scope variables
-	private Session dbSession;
-	Transaction tx;
+	
+	private EntityManager em;
+	//Transaction tx;
 	
 	
 	/**
 	 * Parameterized constructor for injection of connection
 	 * @param conn connection to database
 	 */
-	public LeagueDAO(HttpSession session){
-		if(session.getAttribute("dbSession")!= null && session.getAttribute("dbSession") instanceof Session){
-			this.dbSession=(Session)session.getAttribute("dbSession");
-		} 
-		else{
-			//Setup hibernate configuration
-			Configuration configuration = new Configuration()
-				.addResource("persistence.xml")
-				.setProperty("hibernate.dialect", "org.hibernate.dialect.DerbyDialect");		
-			configuration.configure();
-			
-			//Create hibernate session
-			StandardServiceRegistryBuilder serviceRegistryBuilder = new StandardServiceRegistryBuilder();		
-			serviceRegistryBuilder.applySettings(configuration.getProperties());		
-			StandardServiceRegistry serviceRegistry = serviceRegistryBuilder.build();		
-			SessionFactory sessionFactory = configuration.buildSessionFactory(serviceRegistry);		
-			this.dbSession = sessionFactory.openSession();
-		}
+	public LeagueDAO(EntityManager em){
+		this.em = em;
 	}
 	
-	protected void getDbSession(HttpSession session){
-    	
-    }
-	/**
+	 /**
 	 * Helper method which populates an ArrayList<Game> from a resultset of 
 	 * games obtained from a prepared statement query 
 	 *  
@@ -112,10 +96,10 @@ public class LeagueDAO {
 	 * @return ArrayList<Team> containing all teams
 	 * @throws SQLException
 	 */
-	public ArrayList<Team> getTeams() throws SQLException {
+	public ArrayList<Team> getTeams() {
 		ArrayList<Team> teams = new ArrayList<Team>();
-		tx = dbSession.beginTransaction();
-		teams = (ArrayList<Team>) dbSession.createQuery("FROM Team t ").list();
+		em.getTransaction().begin();
+		teams = (ArrayList<Team>)em.createQuery("SELECT t FROM Team t ", Team.class).getResultList();
 		return teams;
 	}
 	

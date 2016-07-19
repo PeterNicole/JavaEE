@@ -17,7 +17,7 @@ import persistence.Team;
  * Servlet implementation class TeamServlet
  */
 @WebServlet("/Team")
-public class TeamServlet extends HttpServlet {
+public class TeamServlet extends DerbyServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
@@ -35,7 +35,8 @@ public class TeamServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String url = "/Teams.jsp";
 		ServletContext ctx = request.getServletContext();
-		LeagueDAO ldao = new LeagueDAO(request.getSession());
+		getEntityManager(request, response);
+		LeagueDAO ldao = new LeagueDAO(em);
 		
 		ArrayList<Team> teams = new ArrayList<Team>();
 		try {

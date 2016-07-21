@@ -13,14 +13,16 @@
 	<p><b>Assistant Coach:</b> ${team.asstCoach.firstName} ${team.asstCoach.lastName}</p>
 	<p><b>Manager:</b> ${team.manager.firstName} ${team.manager.lastName}</p>
 	<p><b>Trainer:</b> ${team.trainer.firstName} ${team.trainer.lastName}</p>
-	<caption><h4>Forwards</h4></caption>
+	
 	<table class="table table-striped">
+		<tr><th colspan="6"><h4>Forwards</h4><th></tr>
 		<tr>
 			<th style="text-align:center">Jersey</th>
 			<th>Name</th>
 			<th>Position</th>
 			<th style="text-align:center">Height (cm)</th>
 			<th style="text-align:center">Weight (kg)</th>
+			<th></th>
 		</tr>
 		
 		<c:forEach var = "roster" items = "${forwardRosters}">
@@ -29,50 +31,67 @@
 				<td>${roster.player.lastName}, ${roster.player.firstName}</td>	
 				<td>${roster.position}</td>	
 				<td style="text-align:center">${roster.player.height}</td>	
-				<td style="text-align:center">${roster.player.weight}</td>					
+				<td style="text-align:center">${roster.player.weight}</td>	
+				<td>
+					<a class="btn btn-primary" href="
+						<c:url value='/Player'>
+							<c:param name='rosterId' value='${roster.rosterId}'></c:param>
+						</c:url>">Player Info
+					</a>							
+				</td>				
+			</tr>
+		</c:forEach>
+		<tr><th colspan="6"><h4>Defence</h4><th></tr>
+		<tr>
+			<th style="text-align:center">Jersey</th>
+			<th>Name</th>
+			<th>Position</th>
+			<th style="text-align:center">Height (cm)</th>
+			<th style="text-align:center">Weight (kg)</th>
+			<th></th>
+		</tr>
+		
+		<c:forEach var = "roster" items = "${defenceRosters}">
+			<tr>	
+				<td style="text-align:center">${roster.jersey}</td>
+				<td>${roster.player.lastName}, ${roster.player.firstName}</td>	
+				<td>${roster.position}</td>	
+				<td style="text-align:center">${roster.player.height}</td>	
+				<td style="text-align:center">${roster.player.weight}</td>	
+				<td>
+					<a class="btn btn-primary" href="
+						<c:url value='/Player'>
+							<c:param name='rosterId' value='${roster.rosterId}'></c:param>
+						</c:url>">Player Info
+					</a>							
+				</td>				
+			</tr>
+		</c:forEach>
+		<tr><th colspan="6"><h4>Goal Tenders</h4><th></tr>
+		<tr>
+			<th style="text-align:center">Jersey</th>
+			<th>Name</th>
+			<th>Position</th>
+			<th style="text-align:center">Height (cm)</th>
+			<th style="text-align:center">Weight (kg)</th>
+			<th></th>
+		</tr>
+		
+		<c:forEach var = "roster" items = "${goalieRosters}">
+			<tr>	
+				<td style="text-align:center">${roster.jersey}</td>
+				<td>${roster.player.lastName}, ${roster.player.firstName}</td>	
+				<td>${roster.position}</td>	
+				<td style="text-align:center">${roster.player.height}</td>	
+				<td style="text-align:center">${roster.player.weight}</td>	
+				<td>
+					<a class="btn btn-primary" href="
+						<c:url value='/Player'>
+							<c:param name='rosterId' value='${roster.rosterId}'></c:param>
+						</c:url>">Player Info
+					</a>							
+				</td>					
 			</tr>
 		</c:forEach>
 	</table>
-	
-<%-- 	<caption><h4>Defence</h4></caption> --%>
-<!-- 	<table class="table table-striped"> -->
-<!-- 		<tr> -->
-<!-- 			<th style="text-align:center">Jersey</th> -->
-<!-- 			<th>Name</th> -->
-<!-- 			<th>Position</th> -->
-<!-- 			<th style="text-align:center">Height (cm)</th> -->
-<!-- 			<th style="text-align:center">Weight (kg)</th> -->
-<!-- 		</tr> -->
-		
-<%-- 		<c:forEach var = "roster" items = "${defenceRosters}"> --%>
-<!-- 			<tr>	 -->
-<%-- 				<td style="text-align:center">${roster.jersey}</td> --%>
-<%-- 				<td>${roster.player.lastName}, ${roster.player.firstName}</td>	 --%>
-<%-- 				<td>${roster.position}</td>	 --%>
-<%-- 				<td style="text-align:center">${roster.player.height}</td>	 --%>
-<%-- 				<td style="text-align:center">${roster.player.weight}</td>					 --%>
-<!-- 			</tr> -->
-<%-- 		</c:forEach> --%>
-<!-- 	</table> -->
-	
-<%-- 	<caption><h4>Goalie</h4></caption> --%>
-<!-- 	<table class="table table-striped"> -->
-<!-- 		<tr> -->
-<!-- 			<th style="text-align:center">Jersey</th> -->
-<!-- 			<th>Name</th> -->
-<!-- 			<th>Position</th> -->
-<!-- 			<th style="text-align:center">Height (cm)</th> -->
-<!-- 			<th style="text-align:center">Weight (kg)</th> -->
-<!-- 		</tr> -->
-		
-<%-- 		<c:forEach var = "roster" items = "${goalieRosters}"> --%>
-<!-- 			<tr>	 -->
-<%-- 				<td style="text-align:center">${roster.jersey}</td> --%>
-<%-- 				<td>${roster.player.lastName}, ${roster.player.firstName}</td>	 --%>
-<%-- 				<td>${roster.position}</td>	 --%>
-<%-- 				<td style="text-align:center">${roster.player.height}</td>	 --%>
-<%-- 				<td style="text-align:center">${roster.player.weight}</td>					 --%>
-<!-- 			</tr> -->
-<%-- 		</c:forEach> --%>
-<!-- 	</table> -->
 <jsp:include page="Footer.jsp" />

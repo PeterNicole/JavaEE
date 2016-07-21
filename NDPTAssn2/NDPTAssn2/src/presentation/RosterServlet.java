@@ -46,14 +46,14 @@ public class RosterServlet extends DerbyServlet {
 		//If connection to database exists, retrieve roster information from DAO object
 		if(emf != null){
 			LeagueDAO ldao = new LeagueDAO(emf);
-			//ArrayList<Roster> forwardRosters = new ArrayList<Roster>();
-			//ArrayList<Roster> defenceRosters = new ArrayList<Roster>();
-			//ArrayList<Roster> goalieRosters = new ArrayList<Roster>();
+			ArrayList<Roster> forwardRosters = new ArrayList<Roster>();
+			ArrayList<Roster> defenceRosters = new ArrayList<Roster>();
+			ArrayList<Roster> goalieRosters = new ArrayList<Roster>();
 			Team team = new Team();
 			try {
-				 //forwardRosters = ldao.getRosters(teamID, "Left Wing");
-				 //defenceRosters = ldao.getRosters(teamID, "Defence");
-				 //goalieRosters = ldao.getRosters(teamID, "Goalie");
+				 forwardRosters = ldao.getRosters(teamID, "Left Wing", "Right Wing", "Centre");
+				 defenceRosters = ldao.getRosters(teamID, "Defence");
+				 goalieRosters = ldao.getRosters(teamID, "Goalie");
 				 team = ldao.getTeam(teamID);
 			} 
 			catch (Exception e) {
@@ -61,9 +61,9 @@ public class RosterServlet extends DerbyServlet {
 			}
 			
 			//Set roster and team name to be displayed on jsp
-			//request.setAttribute("forwardRosters", forwardRosters);
-			//request.setAttribute("defenceRosters", defenceRosters);
-			//request.setAttribute("goalieRosters", goalieRosters);
+			request.setAttribute("forwardRosters", forwardRosters);
+			request.setAttribute("defenceRosters", defenceRosters);
+			request.setAttribute("goalieRosters", goalieRosters);
 			request.setAttribute("team", team);
 			ctx.getRequestDispatcher(url).forward(request, response);
 		}

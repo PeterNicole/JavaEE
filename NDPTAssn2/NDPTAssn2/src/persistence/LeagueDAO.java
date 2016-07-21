@@ -11,6 +11,7 @@ import java.util.ArrayList;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.TypedQuery;
 
 /**
  * Retrieves persisted data from the LeagueDB Derby Database
@@ -71,20 +72,49 @@ public class LeagueDAO {
 	
 	// player queries
 	/**
+	 * Retrieves a player
+	 */
+	public Roster getRoster(int rosterID)
+	{
+		Roster roster = new Roster();
+		em = emf.createEntityManager();
+		em.getTransaction().begin();
+		roster = (Roster)em.createQuery("SELECT r FROM Roster r WHERE rosterId = :rosterID")
+			.setParameter("rosterID", rosterID).getSingleResult();	
+		em.close();
+		return roster;
+	}
+	/**
 	 * Retrieves a list of all players for a particular team
 	 * @param teamID id of team to retrieve players for
 	 * @return List<Player> containing all players on the team specified
 	 */
-	public ArrayList<Roster> getRosters(String teamID, String position ){
+	public ArrayList<Roster> getRosters(String teamID, String ... position ){
 		ArrayList<Roster> rosters = new ArrayList<Roster>();
 		em = emf.createEntityManager();
 		em.getTransaction().begin();
-		rosters = (ArrayList<Roster>)em.createQuery(
+		String positions = "(";
+		for (int i = 0; i < position.length; i++)
+		{
+			if(i == position.length -1)
+			{
+				positions += "r.position = :position" + i + ")";
+			}
+			else
+			{
+				positions += "r.position = :position" + i + " OR ";
+			}
+		}
+		TypedQuery<Roster> query = em.createQuery(
 			"SELECT r FROM Roster r WHERE r.team.teamId = :teamID "
-			+ "AND r.position = :position ORDER BY r.jersey", Roster.class)
-			.setParameter("teamID", teamID)
-			.setParameter("position", position)
-			.getResultList();
+			+ "AND " + positions
+			+ "ORDER BY r.jersey", Roster.class).setParameter("teamID", teamID);
+			for(int j = 0; j < position.length; j++)
+			{
+				query.setParameter("position" + j, position[j]);
+			}
+			rosters = (ArrayList<Roster>) query.getResultList();
+			
 		em.close();
 		return rosters;
 	}

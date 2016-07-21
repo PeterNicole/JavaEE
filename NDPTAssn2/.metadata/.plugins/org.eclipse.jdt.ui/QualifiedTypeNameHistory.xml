@@ -2,6 +2,7 @@
 <qualifiedTypeNameHistroy>
 <fullyQualifiedTypeName name="javax.persistence.EntityManagerFactory"/>
 <fullyQualifiedTypeName name="javax.servlet.ServletContext"/>
-<fullyQualifiedTypeName name="persistence.Roster"/>
 <fullyQualifiedTypeName name="persistence.Team"/>
+<fullyQualifiedTypeName name="persistence.Player"/>
+<fullyQualifiedTypeName name="persistence.Roster"/>
 </qualifiedTypeNameHistroy>

@@ -1,12 +1,10 @@
 /**
- * PROG3060 - James Wong
+ * PROG3060 - Assn2
  * Nicole Dahlquist & Peter Thomson
- * Created: July 2, 2016
+ * Created: July 12, 2016
  * Team Class - Represents a team object from the LeagueDB
  */
 package persistence;
-
-import java.util.ArrayList;
 
 import javax.persistence.*;
 
@@ -112,7 +110,7 @@ public class Team {
 	}
 
 	@OneToMany(targetEntity=Roster.class)
-	//@JoinColumn(name="team")
+	@JoinColumn(name="team")
 	public Set getRosters(){
 		return rosters;
 	}

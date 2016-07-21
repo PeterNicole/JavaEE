@@ -1,5 +1,5 @@
 /**
- * PROG3060 - James Wong
+ * PROG3060 - Assn2
  * Nicole Dahlquist & Peter Thomson
  * Created: July 2, 2016
  * Game Class - Represents a game object from the LeagueDB
@@ -93,7 +93,6 @@ public class Game {
 		this.visitor = visitor;
 	}
 	
-	@Column(nullable=true)
 	public Integer getHomeScore() {
 		return homeScore;
 	}
@@ -102,7 +101,6 @@ public class Game {
 		this.homeScore = homeScore;
 	}
 	
-	@Column(nullable=true)
 	public Integer getVisitorScore() {
 		return visitorScore;
 	}

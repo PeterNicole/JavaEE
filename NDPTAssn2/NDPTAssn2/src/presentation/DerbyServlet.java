@@ -1,24 +1,19 @@
 /**
  * @author Nicole Dahlquist & Peter Thomson
- * June 4, 2016
- * PROG3060 - NDPTAssn1
+ * July 12, 2016
+ * PROG3060 - NDPTAssn2
  * DerbyServlet.java
  * Servlet superclass with getConnection method to be made available to all other servlets
  */
 package presentation;
 
 import java.io.IOException;
-import java.sql.Connection;
-
-import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
-import javax.persistence.PersistenceContext;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 
 /**
@@ -35,9 +30,8 @@ public abstract class DerbyServlet extends HttpServlet {
 	 * @param request Request object
 	 * @param response Response object
 	 * @throws ServletException
-	 * @throws IOException
 	 */
-	protected void getEntityManager(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+	protected void getEntityManager(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//Initialize local variables
 		
 		emf = null;

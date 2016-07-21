@@ -1,7 +1,7 @@
 <!-- 
  * @author Nicole Dahlquist & Peter Thomson
- * June 12, 2016
- * PROG3060 - NDPTAssn1
+ * July 12, 2016
+ * PROG3060 - NDPTAssn2
  * Footer.jsp
  * jsp for footer displayed at the bottom of each page
  -->

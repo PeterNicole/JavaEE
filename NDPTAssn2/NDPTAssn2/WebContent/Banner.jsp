@@ -1,7 +1,7 @@
 <!-- 
  * @author Nicole Dahlquist & Peter Thomson
- * June 4, 2016
- * PROG3060 - NDPTAssn1
+ * July 12, 2016
+ * PROG3060 - NDPTAssn2
  * Banner.jsp
  * jsp for banner displayed at top of each page
  -->

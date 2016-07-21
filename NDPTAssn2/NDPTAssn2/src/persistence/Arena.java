@@ -1,5 +1,5 @@
 /**
- * PROG3060 - James Wong
+ * PROG3060 - Assn2
  * Nicole Dahlquist & Peter Thomson
  * Created: July 2, 2016
  * Arena Class - Represents a arena object from the LeagueDB

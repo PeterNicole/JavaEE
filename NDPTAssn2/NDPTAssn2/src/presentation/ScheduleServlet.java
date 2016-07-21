@@ -1,14 +1,13 @@
 /**
  * @author Nicole Dahlquist & Peter Thomson
- * June 4, 2016
- * PROG3060 - NDPTAssn1
+ * July 12, 2016
+ * PROG3060 - NDPTAssn2
  * ScheduleServlet.java
  * Servlet for displaying team schedule & game information on Schedule.jsp
  */
 package presentation;
 
 import java.io.IOException;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -28,6 +27,8 @@ public class ScheduleServlet extends DerbyServlet {
 	/**
 	 * ScheduleServlet doGet method
 	 * Retrieves schedule information from database and displays it on schedule.jsp
+	 * @throws IOException 
+	 * @throws ServletException 
 	 */
     @Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

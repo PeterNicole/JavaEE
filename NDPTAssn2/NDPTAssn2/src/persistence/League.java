@@ -1,12 +1,10 @@
 /**
- * PROG3060 - James Wong
+ * PROG3060 - Assn2
  * Nicole Dahlquist & Peter Thomson
  * Created: July 2, 2016
  * League Class - Represents a league object from the LeagueDB
  */
 package persistence;
-
-import java.util.ArrayList;
 
 import javax.persistence.*;
 

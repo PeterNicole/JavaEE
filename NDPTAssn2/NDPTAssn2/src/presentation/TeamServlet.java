@@ -1,3 +1,10 @@
+/**
+ * @author Nicole Dahlquist & Peter Thomson
+ * July 12, 2016
+ * PROG3060 - NDPTAssn2
+ * STeamServlet.java
+ * Servlet for displaying team information
+ */
 package presentation;
 
 import java.io.IOException;

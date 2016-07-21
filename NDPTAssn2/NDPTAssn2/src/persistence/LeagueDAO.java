@@ -1,7 +1,7 @@
 /**
  * @author Nicole Dahlquist & Peter Thomson
- * June 4, 2016
- * PROG3060 - NDPTAssn1
+ * July 12, 2016
+ * PROG3060 - Assn2
  * LeagueDAO.java
  * Retrieves persisted data from the LeagueDB Derby Database
  */
@@ -42,11 +42,11 @@ public class LeagueDAO {
 		em = emf.createEntityManager();
 		em.getTransaction().begin();
 		games = (ArrayList<Game>)em.createQuery(
-			"SELECT g FROM Game g WHERE homeScore IS NOT NULL AND visitorScore IS NOT NULL "
+			"SELECT g FROM Game g "
+			+ "WHERE homeScore IS NOT NULL AND visitorScore IS NOT NULL "
 			+ "AND (g.home.teamId = :home OR g.visitor.teamId = :visitor)", 
 			Game.class).setParameter("home", teamID).setParameter("visitor", teamID)
 			.getResultList();
-		em.getTransaction().commit();
 		em.close();
 		return games;
 	}
@@ -60,8 +60,9 @@ public class LeagueDAO {
 		ArrayList<Game> games = new ArrayList<Game>();
 		em = emf.createEntityManager();
 		em.getTransaction().begin();
-		games = (ArrayList<Game>)em.createQuery("SELECT g FROM Game g WHERE homeScore IS NULL "
-			+ "AND visitorScore IS NULL AND (g.home.teamId = :home OR g.visitor.teamId = :visitor)",
+		games = (ArrayList<Game>)em.createQuery("SELECT g FROM Game g "
+				+ "WHERE homeScore IS NULL AND visitorScore IS NULL "
+				+ "AND (g.home.teamId = :home OR g.visitor.teamId = :visitor)",
 		Game.class).setParameter("home", teamID).setParameter("visitor", teamID)
 		.getResultList();
 		em.close();
@@ -74,19 +75,34 @@ public class LeagueDAO {
 	 * @param teamID id of team to retrieve players for
 	 * @return List<Player> containing all players on the team specified
 	 */
-	public ArrayList<Roster> getRosters(String teamID){
+	public ArrayList<Roster> getRosters(String teamID, String position ){
 		ArrayList<Roster> rosters = new ArrayList<Roster>();
 		em = emf.createEntityManager();
 		em.getTransaction().begin();
 		rosters = (ArrayList<Roster>)em.createQuery(
-			"SELECT r FROM Roster r WHERE r.team.teamId = :teamID", 
-			Roster.class).setParameter("teamID", teamID).getResultList();
-		em.getTransaction().commit();
+			"SELECT r FROM Roster r WHERE r.team.teamId = :teamID "
+			+ "AND r.position = :position ORDER BY r.jersey", Roster.class)
+			.setParameter("teamID", teamID)
+			.setParameter("position", position)
+			.getResultList();
 		em.close();
 		return rosters;
 	}
 	
 	// team queries
+	/**
+	 * Retrieves a specific team
+	 */
+	public Team getTeam(String teamId)
+	{
+		Team team = new Team();
+		em = emf.createEntityManager();
+		em.getTransaction().begin();
+		team = (Team)em.createQuery("SELECT t FROM Team t WHERE teamId = :teamId")
+			.setParameter("teamId", teamId).getSingleResult();	
+		em.close();
+		return team;
+	}
 	/**
 	 * Retrieves a list of all teams in the database
 	 * @return ArrayList<Team> containing all teams
@@ -97,7 +113,6 @@ public class LeagueDAO {
 		em.getTransaction().begin();
 		teams = (ArrayList<Team>)em.createQuery("SELECT t FROM Team t ", Team.class)
 			.getResultList();
-		em.getTransaction().commit();
 		em.close();
 		return teams;
 	}

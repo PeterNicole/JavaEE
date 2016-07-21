@@ -1,7 +1,7 @@
 /**
- * PROG3060 - James Wong
+ * PROG3060 - Assn2
  * Nicole Dahlquist & Peter Thomson
- * Created: July 2, 2016
+ * Created: July 12, 2016
  * Schedule Class - Represents a schedule object from the LeagueDB
  */
 package persistence;

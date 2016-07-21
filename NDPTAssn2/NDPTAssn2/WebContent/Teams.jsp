@@ -1,7 +1,7 @@
 <!-- 
  * @author Nicole Dahlquist & Peter Thomson
- * June 4, 2016
- * PROG3060 - NDPTAssn1
+ * July 12, 2016
+ * PROG3060 - NDPTAssn2
  * Teams.jsp
  * jsp for displaying team info
  -->
@@ -28,7 +28,7 @@
 				<td>${team.teamName}</td>	
 				<td>${team.league.leagueName}</td>	
 				<td>${team.sponsor}</td>	
-				<td><a target="_blank" href="http://${team.website}"/>${team.website }</td>	
+				<td><a target="_blank" href="http://${team.website}">${team.website }</a></td>	
 				<td>${team.headCoach.firstName} ${team.headCoach.lastName }</td>	
 				<td>${team.asstCoach.firstName} ${team.asstCoach.lastName }</td>	
 				<td>${team.manager.firstName} ${team.manager.lastName }</td>	
@@ -38,7 +38,6 @@
 					<a class="btn btn-primary" href="
 						<c:url value='/Roster'>
 							<c:param name='teamID' value='${team.teamId}'></c:param>
-							<c:param name='teamName' value='${team.teamName}'></c:param>
 						</c:url>">Roster
 					</a>							
 				</td>		

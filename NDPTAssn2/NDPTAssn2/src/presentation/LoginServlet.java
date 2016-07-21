@@ -1,26 +1,19 @@
 /**
  * @author Nicole Dahlquist & Peter Thomson
- * June 4, 2016
- * PROG3060 - NDPTAssn1
+ * July 12, 2016
+ * PROG3060 - NDPTAssn2
  * LoginServlet.java
  * Servlet for handling log in requests to derby database
  */
 package presentation;
 
 import java.io.IOException;
-import java.sql.DriverManager;
-import java.sql.SQLException;
-import java.util.Properties;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.servlet.ServletContext;
-import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 @WebServlet("/LoginServlet")
 /*
@@ -37,10 +30,10 @@ public class LoginServlet extends DerbyServlet {
 	/**
 	 * LoginServlet doPost method,
 	 * Retrieves credentials from form and authenticates/establishes a connection to derby database
-	 *
+	 * @throws IOException 
 	 */
 	@Override
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		//Initialize local variables
 		String url = "/Login.jsp?error=true";
 		String userName = request.getParameter("username");

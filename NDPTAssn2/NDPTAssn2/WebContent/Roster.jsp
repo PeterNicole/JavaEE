@@ -18,14 +18,14 @@
 			<th style="text-align:center">Weight (kg)</th>
 			<th>Country</th>
 		</tr>
-		<c:forEach var = "player" items = "${roster}">
+		<c:forEach var = "roster" items = "${rosters}">
 			<tr>	
-				<td style="text-align:center">${player.jerseyNumber}</td>
-				<td>${player.lastName}, ${player.firstName}</td>	
-				<td>${player.position}</td>	
-				<td style="text-align:center">${player.height}</td>	
-				<td style="text-align:center">${player.weight}</td>	
-				<td>${player.country}</td>					
+				<td style="text-align:center">${roster.jersey}</td>
+				<td>${roster.player.lastName}, ${roster.player.firstName}</td>	
+				<td>${roster.position}</td>	
+				<td style="text-align:center">${roster.player.height}</td>	
+				<td style="text-align:center">${roster.player.weight}</td>	
+				<td>${roster.player.country}</td>					
 			</tr>
 		</c:forEach>
 	</table>

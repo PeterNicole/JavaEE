@@ -10,14 +10,17 @@ package presentation;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
+
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
 import persistence.LeagueDAO;
 import persistence.Player;
+import persistence.Roster;
 
 /**
  * Servlet for displaying team roster information on Roster.jsp
@@ -42,18 +45,18 @@ public class RosterServlet extends DerbyServlet {
 		getEntityManager(request, response);
 		
 		//If connection to database exists, retrieve roster information from DAO object
-		if(em != null){
-			LeagueDAO ldao = new LeagueDAO(em);
-			ArrayList<Player> roster = new ArrayList<Player>();
+		if(emf != null){
+			LeagueDAO ldao = new LeagueDAO(emf);
+			ArrayList<Roster> rosters = new ArrayList<Roster>();
 			try {
-				roster = ldao.getPlayers(teamID);		
+				rosters = ldao.getRosters(teamID);		
 			} 
 			catch (Exception e) {
 				e.printStackTrace();
 			}
 			
 			//Set roster and team name to be displayed on jsp
-			request.setAttribute("roster", roster);
+			request.setAttribute("rosters", rosters);
 			request.setAttribute("teamName", teamName);
 			ctx.getRequestDispatcher(url).forward(request, response);
 		}

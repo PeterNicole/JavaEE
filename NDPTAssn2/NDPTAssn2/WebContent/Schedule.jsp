@@ -8,6 +8,7 @@
  <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <jsp:include page="Banner.jsp" />
 	<h1>Scheduled Games for ${teamName} <a class="btn btn-primary" style="float:right;" href="<c:url value='/Team'></c:url>">Back to Teams</a></h1>	
 	<table class="table table-striped">
@@ -23,10 +24,10 @@
 		</tr>
 		<c:forEach var = "game" items = "${scheduledGames}">
 			<tr>
-				<td>${game.date}</td>
-				<td>${game.arenaName}</td>	
-				<td>${game.homeTeam}</td>	
-				<td>${game.visitorTeam}</td>	
+				<td><fmt:formatDate value="${game.gameDate}" pattern="dd-MM-yyyy" /></td>
+				<td>${game.arena.arenaName}</td>	
+				<td>${game.home.teamName}</td>	
+				<td>${game.visitor.teamName}</td>	
 				<td style="text-align:center"></td>	
 				<td style="text-align:center"></td>	
 				<td></td>	
@@ -50,10 +51,10 @@
 		</tr>
 		<c:forEach var = "game" items = "${completedGames}">
 			<tr>
-				<td>${game.date}</td>
-				<td>${game.arenaName}</td>	
-				<td>${game.homeTeam}</td>	
-				<td>${game.visitorTeam}</td>	
+				<td><fmt:formatDate value="${game.gameDate}" pattern="dd-MM-yyyy" /></td>
+				<td>${game.arena.arenaName}</td>	
+				<td>${game.home.teamName}</td>	
+				<td>${game.visitor.teamName}</td>	
 				<td style="text-align:center">${game.homeScore}</td>	
 				<td style="text-align:center">${game.visitorScore}</td>	
 				<td>${game.OT}</td>	

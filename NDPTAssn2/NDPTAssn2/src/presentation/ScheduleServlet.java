@@ -44,17 +44,17 @@ public class ScheduleServlet extends DerbyServlet {
 		getEntityManager(request, response);
 		
 		//If connection found, retrieve schedule data from DAO 
-		if(em != null){
-			LeagueDAO ldao = new LeagueDAO(em);
+		if(emf != null){
+			LeagueDAO ldao = new LeagueDAO(emf);
 			ArrayList<Game> scheduledGames = new ArrayList<Game>();
 			ArrayList<Game> completedGames = new ArrayList<Game>();
 		
 			try {
 				scheduledGames = ldao.getScheduledGames(teamID);		
 				completedGames = ldao.getCompletedGames(teamID);
-				wins = ldao.getWins(teamID);
-				losses = ldao.getLosses(teamID);
-				ties = ldao.getTies(teamID);
+				//wins = ldao.getWins(teamID);
+				//losses = ldao.getLosses(teamID);
+				//ties = ldao.getTies(teamID);
 			}
 			
 			catch (Exception e) {
@@ -65,9 +65,9 @@ public class ScheduleServlet extends DerbyServlet {
 			request.setAttribute("completedGames", completedGames);
 			request.setAttribute("scheduledGames", scheduledGames);
 			request.setAttribute("teamName", teamName);
-			request.setAttribute("wins", wins);
-			request.setAttribute("losses", losses);
-			request.setAttribute("ties", ties);
+			//request.setAttribute("wins", wins);
+			//request.setAttribute("losses", losses);
+			//request.setAttribute("ties", ties);
 			ctx.getRequestDispatcher(url).forward(request, response);
 		}		
 	}

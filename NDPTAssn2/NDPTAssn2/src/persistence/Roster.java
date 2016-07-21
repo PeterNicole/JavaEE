@@ -18,7 +18,7 @@ public class Roster {
 	private Player player;
 	private Team team;
 	private int jersey;
-	private String positon;
+	private String position;
 	private Set playerStats;
 	
 	@Id
@@ -59,12 +59,12 @@ public class Roster {
 		this.jersey = jersey;
 	}
 	
-	public String getPositon() {
-		return positon;
+	public String getPosition() {
+		return position;
 	}
 	
-	public void setPositon(String positon) {
-		this.positon = positon;
+	public void setPosition(String position) {
+		this.position = position;
 	}
 	
 	@OneToMany(targetEntity=PlayerStats.class)

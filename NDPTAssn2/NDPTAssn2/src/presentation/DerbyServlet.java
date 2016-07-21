@@ -11,6 +11,7 @@ import java.io.IOException;
 import java.sql.Connection;
 
 import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
 import javax.persistence.PersistenceContext;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -27,7 +28,7 @@ import javax.servlet.http.HttpSession;
 public abstract class DerbyServlet extends HttpServlet {
 	//Class scope variables and constants
 	private static final long serialVersionUID = 1L;
-	protected EntityManager em;
+	protected EntityManagerFactory emf;
 	
 	/**
 	 * Attempts to retrieve derby connection from the session
@@ -38,14 +39,15 @@ public abstract class DerbyServlet extends HttpServlet {
 	 */
 	protected void getEntityManager(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
 		//Initialize local variables
-		em = null;
-		HttpSession session = request.getSession();
+		
+		emf = null;
+		ServletContext applicationScope = request.getServletContext();
 		
 		// attempt to get connection from session		
-		em = (EntityManager)session.getAttribute("entityManager");
+		emf = (EntityManagerFactory)applicationScope.getAttribute("entityManagerFactory");
 		
 		//Redirect to database log in page if no connection found
-		if(em == null){
+		if(emf == null){
 			String url = "/Login.jsp";
 			ServletContext ctx = getServletContext();	
 			ctx.getRequestDispatcher(url).forward(request, response);

@@ -19,7 +19,7 @@
 			<th>Head Coach</th>
 			<th>Assistant Coach</th>
 			<th>Manager</th>
-<!-- 			<th colspan="2">Wins-Ties-Losses</th> -->
+			<th colspan="2">Wins-Ties-Losses</th>
 			<th colspan="1"></th>
 			<th colspan="1"></th>
 		</tr>
@@ -32,7 +32,7 @@
 				<td>${team.headCoach.firstName} ${team.headCoach.lastName }</td>	
 				<td>${team.asstCoach.firstName} ${team.asstCoach.lastName }</td>	
 				<td>${team.manager.firstName} ${team.manager.lastName }</td>	
-<%-- 				<td style="text-align:right">${team.wins}-${team.ties}-${team.losses}</td> --%>
+ 				<td style="text-align:right"><%--${team.wins}-${team.ties}-${team.losses} --%></td> 
 				<td></td>
 				<td>
 					<a class="btn btn-primary" href="

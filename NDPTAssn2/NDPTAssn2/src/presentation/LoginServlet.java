@@ -15,6 +15,7 @@ import java.util.Properties;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -40,7 +41,6 @@ public class LoginServlet extends DerbyServlet {
 	 */
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
 		//Initialize local variables
 		String url = "/Login.jsp?error=true";
 		String userName = request.getParameter("username");
@@ -49,8 +49,7 @@ public class LoginServlet extends DerbyServlet {
 		//Verify username and password, attempt to get derby connection if valid credentials
 		try {
 			if(userName.equals(USER) && password.equals(PASSWORD)){
-				EntityManagerFactory emf = Persistence.createEntityManagerFactory("leagueDB");
-				em = emf.createEntityManager();
+				emf = Persistence.createEntityManagerFactory("leagueDB");
 			}			
 		} 
 		
@@ -58,10 +57,10 @@ public class LoginServlet extends DerbyServlet {
 			e.printStackTrace();
 		}
 		
-		//Store connection in session variable if it exists
-		if(em != null){		
-			HttpSession session = request.getSession();
-			session.setAttribute("entityManager", em);			
+		//Store connection in application scope variable if it exists
+		if(emf != null){		
+			ServletContext applicationScope = request.getServletContext();
+			applicationScope.setAttribute("entityManagerFactory", emf);			
 			url = "/Team";
 		}
 		

@@ -32,7 +32,22 @@ public class LeagueDAO {
 	public LeagueDAO(EntityManagerFactory emf){
 		this.emf = emf;
 	}
-	
+	// games
+	/**
+	 * Retrieves all upcoming games
+	 * @return ArrayList<Game> containing upcoming games for all teams
+	 */
+	public ArrayList<Game> getUpcomingGames(){
+		ArrayList<Game> games = new ArrayList<Game>();
+		em = emf.createEntityManager();
+		em.getTransaction().begin();
+		games = (ArrayList<Game>)em.createQuery("SELECT g FROM Game g "
+				+ "WHERE homeScore IS NULL AND visitorScore IS NULL "
+				+ "ORDER BY g.gameDate",
+				Game.class).getResultList();
+		em.close();
+		return games;
+	}
 	/**
 	 * Retrieves a list of completed games for a particular team
 	 * @param teamID id of team to retrieve completed games for
@@ -42,10 +57,10 @@ public class LeagueDAO {
 		ArrayList<Game> games = new ArrayList<Game>();
 		em = emf.createEntityManager();
 		em.getTransaction().begin();
-		games = (ArrayList<Game>)em.createQuery(
-			"SELECT g FROM Game g "
+		games = (ArrayList<Game>)em.createQuery("SELECT g FROM Game g "
 			+ "WHERE homeScore IS NOT NULL AND visitorScore IS NOT NULL "
-			+ "AND (g.home.teamId = :home OR g.visitor.teamId = :visitor)", 
+			+ "AND (g.home.teamId = :home OR g.visitor.teamId = :visitor) "
+			+ "ORDER BY g.gameDate", 
 			Game.class).setParameter("home", teamID).setParameter("visitor", teamID)
 			.getResultList();
 		em.close();
@@ -62,10 +77,12 @@ public class LeagueDAO {
 		em = emf.createEntityManager();
 		em.getTransaction().begin();
 		games = (ArrayList<Game>)em.createQuery("SELECT g FROM Game g "
-				+ "WHERE homeScore IS NULL AND visitorScore IS NULL "
-				+ "AND (g.home.teamId = :home OR g.visitor.teamId = :visitor)",
-		Game.class).setParameter("home", teamID).setParameter("visitor", teamID)
-		.getResultList();
+			+ "WHERE homeScore IS NULL AND visitorScore IS NULL "
+			+ "AND (g.home.teamId = :home OR g.visitor.teamId = :visitor) "
+			+ "ORDER BY g.gameDate",
+			Game.class).setParameter("home", teamID)
+			.setParameter("visitor", teamID)
+			.getResultList();
 		em.close();
 		return games;
 	}
@@ -79,7 +96,8 @@ public class LeagueDAO {
 		Roster roster = new Roster();
 		em = emf.createEntityManager();
 		em.getTransaction().begin();
-		roster = (Roster)em.createQuery("SELECT r FROM Roster r WHERE rosterId = :rosterID")
+		roster = (Roster)em.createQuery("SELECT r FROM Roster r "
+			+ "WHERE rosterId = :rosterID")
 			.setParameter("rosterID", rosterID).getSingleResult();	
 		em.close();
 		return roster;
@@ -108,7 +126,8 @@ public class LeagueDAO {
 		TypedQuery<Roster> query = em.createQuery(
 			"SELECT r FROM Roster r WHERE r.team.teamId = :teamID "
 			+ "AND " + positions
-			+ "ORDER BY r.jersey", Roster.class).setParameter("teamID", teamID);
+			+ "ORDER BY r.jersey", Roster.class)
+				.setParameter("teamID", teamID);
 			for(int j = 0; j < position.length; j++)
 			{
 				query.setParameter("position" + j, position[j]);
@@ -128,7 +147,8 @@ public class LeagueDAO {
 		Team team = new Team();
 		em = emf.createEntityManager();
 		em.getTransaction().begin();
-		team = (Team)em.createQuery("SELECT t FROM Team t WHERE teamId = :teamId")
+		team = (Team)em.createQuery("SELECT t FROM Team t "
+				+ "WHERE teamId = :teamId AND t.league = 'NHL'")
 			.setParameter("teamId", teamId).getSingleResult();	
 		em.close();
 		return team;
@@ -141,10 +161,25 @@ public class LeagueDAO {
 		ArrayList<Team> teams = new ArrayList<Team>();
 		em = emf.createEntityManager();
 		em.getTransaction().begin();
-		teams = (ArrayList<Team>)em.createQuery("SELECT t FROM Team t ", Team.class)
+		teams = (ArrayList<Team>)em.createQuery("SELECT t FROM Team t "
+			+ "WHERE t.league = 'NHL'", Team.class)
 			.getResultList();
 		em.close();
 		return teams;
+	}
+	// arena queries
+	/**
+	 * Get the arenas
+	 */
+	public ArrayList<Arena> getArenas()
+	{
+		ArrayList<Arena> arenas = new ArrayList<Arena>();
+		em = emf.createEntityManager();
+		em.getTransaction().begin();
+		arenas = (ArrayList<Arena>)em.createQuery("SELECT a FROM Arena a ORDER BY a.arenaName",
+			Arena.class).getResultList();
+		em.close();
+		return arenas;
 	}
 	
 	// standings queries

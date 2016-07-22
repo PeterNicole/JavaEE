@@ -28,17 +28,16 @@
 		<c:forEach var = "roster" items = "${forwardRosters}">
 			<tr>	
 				<td style="text-align:center">${roster.jersey}</td>
-				<td>${roster.player.lastName}, ${roster.player.firstName}</td>	
+				<td>
+					<a href="<c:url value='/Player'>
+						<c:param name='rosterId' value='${roster.rosterId}'></c:param>
+						</c:url>">${roster.player.lastName}, ${roster.player.firstName}
+					</a>
+				</td>	
 				<td>${roster.position}</td>	
 				<td style="text-align:center">${roster.player.height}</td>	
 				<td style="text-align:center">${roster.player.weight}</td>	
-				<td>
-					<a class="btn btn-primary" href="
-						<c:url value='/Player'>
-							<c:param name='rosterId' value='${roster.rosterId}'></c:param>
-						</c:url>">Player Info
-					</a>							
-				</td>				
+							
 			</tr>
 		</c:forEach>
 		<tr><th colspan="6"><h4>Defence</h4><th></tr>
@@ -54,17 +53,15 @@
 		<c:forEach var = "roster" items = "${defenceRosters}">
 			<tr>	
 				<td style="text-align:center">${roster.jersey}</td>
-				<td>${roster.player.lastName}, ${roster.player.firstName}</td>	
+				<td>
+					<a href="<c:url value='/Player'>
+						<c:param name='rosterId' value='${roster.rosterId}'></c:param>
+						</c:url>">${roster.player.lastName}, ${roster.player.firstName}
+					</a>
+				</td>		
 				<td>${roster.position}</td>	
 				<td style="text-align:center">${roster.player.height}</td>	
-				<td style="text-align:center">${roster.player.weight}</td>	
-				<td>
-					<a class="btn btn-primary" href="
-						<c:url value='/Player'>
-							<c:param name='rosterId' value='${roster.rosterId}'></c:param>
-						</c:url>">Player Info
-					</a>							
-				</td>				
+				<td style="text-align:center">${roster.player.weight}</td>					
 			</tr>
 		</c:forEach>
 		<tr><th colspan="6"><h4>Goal Tenders</h4><th></tr>
@@ -80,17 +77,15 @@
 		<c:forEach var = "roster" items = "${goalieRosters}">
 			<tr>	
 				<td style="text-align:center">${roster.jersey}</td>
-				<td>${roster.player.lastName}, ${roster.player.firstName}</td>	
+				<td>
+					<a href="<c:url value='/Player'>
+						<c:param name='rosterId' value='${roster.rosterId}'></c:param>
+						</c:url>">${roster.player.lastName}, ${roster.player.firstName}
+					</a>
+				</td>	
 				<td>${roster.position}</td>	
 				<td style="text-align:center">${roster.player.height}</td>	
-				<td style="text-align:center">${roster.player.weight}</td>	
-				<td>
-					<a class="btn btn-primary" href="
-						<c:url value='/Player'>
-							<c:param name='rosterId' value='${roster.rosterId}'></c:param>
-						</c:url>">Player Info
-					</a>							
-				</td>					
+				<td style="text-align:center">${roster.player.weight}</td>					
 			</tr>
 		</c:forEach>
 	</table>

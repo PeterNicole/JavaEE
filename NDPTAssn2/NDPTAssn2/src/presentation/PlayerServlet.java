@@ -18,7 +18,7 @@ import persistence.Team;
 /**
  * Servlet implementation class PlayerServlet
  */
-@WebServlet("/PlayerServlet")
+@WebServlet("/Player")
 public class PlayerServlet extends DerbyServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -38,7 +38,7 @@ public class PlayerServlet extends DerbyServlet {
 		ServletContext ctx = request.getServletContext();
 		getEntityManager(request, response);
 		LeagueDAO ldao = new LeagueDAO(emf);
-		int rosterId = (int) request.getAttribute("rosterID");
+		int rosterId = Integer.parseInt(request.getParameter("rosterId"));
 		Roster roster = new Roster();
 		try {
 			roster = ldao.getRoster(rosterId);			

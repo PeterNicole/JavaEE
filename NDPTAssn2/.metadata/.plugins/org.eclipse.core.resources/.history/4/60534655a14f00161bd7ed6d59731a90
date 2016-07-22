@@ -1,0 +1,16 @@
+<!-- 
+ * @author Nicole Dahlquist & Peter Thomson
+ * July 21, 2016
+ * PROG3060 - NDPTAssn2
+ * UpcomingGames.jsp
+ * jsp for displaying upcoming games info
+ -->
+ <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<jsp:include page="Banner.jsp" />
+
+	<h1>Upcoming Games</h1>
+	
+		
+<jsp:include page="Footer.jsp" />

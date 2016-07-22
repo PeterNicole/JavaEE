@@ -45,6 +45,7 @@ public abstract class DerbyServlet extends HttpServlet {
 			String url = "/Login.jsp";
 			ServletContext ctx = getServletContext();	
 			ctx.getRequestDispatcher(url).forward(request, response);
+			return;
 		}
 	}
 	

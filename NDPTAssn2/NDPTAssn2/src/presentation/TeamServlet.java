@@ -44,7 +44,6 @@ public class TeamServlet extends DerbyServlet {
 		ServletContext ctx = request.getServletContext();
 		getEntityManager(request, response);
 		LeagueDAO ldao = new LeagueDAO(emf);
-		
 		ArrayList<Team> teams = new ArrayList<Team>();
 		try {
 			teams = ldao.getTeams();			

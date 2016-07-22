@@ -9,13 +9,16 @@ package presentation;
 
 import java.io.IOException;
 import java.util.ArrayList;
+
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
 import persistence.Game;
 import persistence.LeagueDAO;
+import persistence.Team;
 
 /**
  * Servlet for displaying team schedule & game information on Schedule.jsp
@@ -35,7 +38,8 @@ public class ScheduleServlet extends DerbyServlet {
     	//Initialize local variables
 		String url = "/Schedule.jsp";
 		String teamID = request.getParameter("teamID");
-		String teamName = request.getParameter("teamName");
+		Team team = new Team();
+		
 		int wins = 0;
 		int losses = 0;
 		int ties = 0;
@@ -53,6 +57,7 @@ public class ScheduleServlet extends DerbyServlet {
 			try {
 				scheduledGames = ldao.getScheduledGames(teamID);		
 				completedGames = ldao.getCompletedGames(teamID);
+				team = ldao.getTeam(teamID);
 				//wins = ldao.getWins(teamID);
 				//losses = ldao.getLosses(teamID);
 				//ties = ldao.getTies(teamID);
@@ -65,7 +70,7 @@ public class ScheduleServlet extends DerbyServlet {
 			//Set attributes with information to be displayed on jsp
 			request.setAttribute("completedGames", completedGames);
 			request.setAttribute("scheduledGames", scheduledGames);
-			request.setAttribute("teamName", teamName);
+			request.setAttribute("team", team);
 			//request.setAttribute("wins", wins);
 			//request.setAttribute("losses", losses);
 			//request.setAttribute("ties", ties);

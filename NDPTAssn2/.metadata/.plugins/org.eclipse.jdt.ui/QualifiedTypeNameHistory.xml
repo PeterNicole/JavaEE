@@ -7,4 +7,6 @@
 <fullyQualifiedTypeName name="persistence.Team"/>
 <fullyQualifiedTypeName name="persistence.Arena"/>
 <fullyQualifiedTypeName name="java.util.ArrayList"/>
+<fullyQualifiedTypeName name="java.lang.Comparable"/>
+<fullyQualifiedTypeName name="java.util.Collections"/>
 </qualifiedTypeNameHistroy>

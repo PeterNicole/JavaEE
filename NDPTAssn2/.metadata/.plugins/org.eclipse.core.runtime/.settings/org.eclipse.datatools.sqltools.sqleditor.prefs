@@ -1,0 +1,3 @@
+PreferenceConstants.EXECUTE_SQL_ERROR_MODE=PreferenceConstants.PROMPT_MODE_ALWAYS
+eclipse.preferences.version=1
+show.dailog.for.syntax.validation=always

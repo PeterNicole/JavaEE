@@ -196,7 +196,7 @@ public class LeagueDAO {
 			+ "WHERE t.league = 'NHL'", Team.class)
 			.getResultList();
 		em.close();
-		//Sorts teams in order of wins > ties > losses using Comparable interface
+		//Sorts teams in order of points using Comparable interface
 		Collections.sort(teams);
 		return teams;
 	}

@@ -11,9 +11,7 @@
 <jsp:include page="Banner.jsp" />
 
 	<h1>Scheduled Games for ${team.teamName} 
-		<a class="btn btn-primary" style="float:right;" href="<c:url value='/Team'>
-		</c:url>">Back to Teams</a>
-	</h1>	
+		<a class="btn btn-primary" style="float:right;" href="<c:url value='/Team'></c:url>">Back to Teams</a></h1>	
 	<table class="table table-striped">
 		<tr>
 			<th>Game Date</th>
@@ -26,7 +24,7 @@
 		</tr>
 		<c:forEach var = "game" items = "${scheduledGames}">
 			<tr>
-				<td><fmt:formatDate value="${game.gameDate}" pattern="dd-MM-yyyy"/></td>
+				<td><fmt:formatDate value="${game.gameDate}" pattern="dd-MM-yyyy" /></td>
 				<td><fmt:formatDate value="${game.gameTime}" pattern="h:mm a" /></td>
 				<td>${game.arena.arenaName}</td>	
 				<td>${game.home.teamName}</td>	
@@ -44,8 +42,7 @@
 		href="<c:url value='/Team'></c:url>">Back to Teams</a></h1>
 	<table class="table table-striped">
 		<caption style="font-weight:bold;padding:15px 0;border: 1px red solid;">
-			Wins:  ${team.wins}  Overtime Losses: ${team.overtimeLosses}  Losses: ${team.losses}
-		</caption>
+			Wins:  ${team.wins}  Overtime Losses: ${team.overtimeLosses}  Losses: ${team.losses}</caption>
 		<tr style="text-align:center">
 			<th>Game Date</th>
 			<th>Game Time</th>

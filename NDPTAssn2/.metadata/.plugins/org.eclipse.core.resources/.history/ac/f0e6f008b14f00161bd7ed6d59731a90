@@ -1,0 +1,39 @@
+<!-- 
+ * @author Nicole Dahlquist & Peter Thomson
+ * July 12, 2016
+ * PROG3060 - NDPTAssn2
+ * Banner.jsp
+ * jsp for banner displayed at top of each page
+ -->
+ 
+<%--Peter-Puck icon from http://4.bp.blogspot.com/-4-8MLSvfSmM/Tdk0BpimEbI/AAAAAAAAo_k/rOvYOyAFlCg/s320/Peter-Puck.jpg --%>
+<%-- Dice image from http://www.friv1000000online.com/ --%>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>NDPT Hockey Central</title>
+        <link rel="icon" href="images/NDPT-icon.png" type="image/x-png" />
+        <link rel="stylesheet" href="styles/bootstrap.min.css">
+    </head>
+    <body style="margin-bottom: 20px;">
+    
+        <header>        
+        	<table class="table" style="margin-left: 20px;">
+        		<tr>
+        			<th><a href="<c:url value='/Arena'>
+						</c:url>">Arena
+					</a></th>
+        			<th><a href="<c:url value='/UpcomingGame'>
+						</c:url>">Upcoming Games</a></th>
+        			<th><a href="<c:url value='/Team'>
+						</c:url>">Teams</a></th>
+       			</tr>
+    		</table>    
+            <h1 class="col-sm-offset-3 col-sm-9"><img src="images/Peter-Puck.jpg" width="10%" height="10%" alt="Roll The Dice"/>  NDPT Hockey Central</h1>
+        </header>
+	    <div class="row"><br/></div>
+	    <div class="row"><br/></div>
+	    <div class="row"><br/></div>

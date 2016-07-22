@@ -5,7 +5,6 @@
  * Roster.jsp
  * jsp for displaying team rosters
  -->
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <jsp:include page="Banner.jsp" />
 	<h1>Roster for ${team.teamName} <a class="btn btn-primary" style="float:right;"href="<c:url value='/Team'></c:url>">Back to Teams</a></h1>

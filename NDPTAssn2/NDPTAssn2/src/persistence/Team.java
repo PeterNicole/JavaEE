@@ -11,7 +11,7 @@ import javax.persistence.*;
 import java.util.Set;
 
 @Entity
-public class Team {
+public class Team implements Comparable<Team>{
 		
 	private String teamId;
 	private League league;
@@ -25,6 +25,12 @@ public class Team {
 	private Set rosters;
 	private Set homeGames;
 	private Set visitorGames;
+	private int wins;
+	private int overtimeLosses;
+	private int losses;
+	private int totalGames;
+	private int points;
+	private Set allGames;
 	
 	@Id
 	public String getTeamId() {
@@ -137,5 +143,103 @@ public class Team {
 	
 	public void setVisitorGames(Set games){
 		this.visitorGames = games;
+	}
+
+	@Transient
+	public int getWins() {
+		wins = 0;
+		for(Game g : (Set<Game>)getHomeGames())
+		{
+			if(g.getHomeScore() != null && g.getVisitorScore() != null)
+			{
+				if(g.getHomeScore().intValue() > g.getVisitorScore().intValue())
+				{
+					wins++;
+				}
+			}
+		}
+		for(Game g : (Set<Game>)getVisitorGames())
+		{
+			if(g.getHomeScore() != null && g.getVisitorScore() != null)
+			{
+				if(g.getHomeScore().intValue() < g.getVisitorScore().intValue())
+				{
+					wins++;
+				}
+			}
+		}
+		return wins;
+	}
+
+	@Transient
+	public int getOvertimeLosses() {
+		overtimeLosses = 0;
+		for(Game g : (Set<Game>)homeGames)
+		{
+			String ot = g.getOT();
+			if(g.getHomeScore() != null && g.getVisitorScore() != null)
+			{
+				if((g.getHomeScore().intValue() < g.getVisitorScore().intValue()) && g.getOT().equals("Y"))
+				{
+					overtimeLosses++;
+				}
+			}
+		}
+		for(Game g : (Set<Game>)visitorGames)
+		{
+			if(g.getHomeScore() != null && g.getVisitorScore() != null)
+			{
+				if((g.getHomeScore().intValue() > g.getVisitorScore().intValue()) && g.getOT().equals("Y"))
+				{
+					overtimeLosses++;
+				}
+			}
+		}
+		return overtimeLosses;
+	}
+
+	@Transient
+	public int getLosses() {
+		losses = 0;
+		for(Game g : (Set<Game>)homeGames)
+		{
+			if(g.getHomeScore() != null && g.getVisitorScore() != null)
+			{
+				if((g.getHomeScore().intValue() < g.getVisitorScore().intValue()) && g.getOT().equals("N"))
+				{
+					losses++;
+				}
+			}
+		}
+		for(Game g : (Set<Game>)visitorGames)
+		{
+			if(g.getHomeScore() != null && g.getVisitorScore() != null)
+			{
+				if((g.getHomeScore().intValue() > g.getVisitorScore().intValue()) && g.getOT().equals("N"))
+				{
+					losses++;
+				}
+			}
+		}
+		return losses;
+	}
+
+	@Transient
+	public int getTotalGames() {
+		return (getWins() + getLosses() + getOvertimeLosses());
+	}
+
+	@Transient
+	public int getPoints() {
+		points = 0;
+		return (2 * getWins() + 1 * getOvertimeLosses());
+	}
+	
+	@Override
+	/**
+	 * Implementation of Comparable interface to allow easy sorting of teams by wins, losses, and ties
+	 */
+	public int compareTo(Team o) {		
+		return o.getPoints() - getPoints();
 	}
 }

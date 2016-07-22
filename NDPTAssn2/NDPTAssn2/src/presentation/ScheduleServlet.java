@@ -46,7 +46,7 @@ public class ScheduleServlet extends DerbyServlet {
 		ServletContext ctx = getServletContext();
 		
 		//Attempt to get database connection, redirects to login page if no connection found
-		getEntityManager(request, response);
+		getEntityManagerFactory(request, response);
 		
 		//If connection found, retrieve schedule data from DAO 
 		if(emf != null){

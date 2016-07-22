@@ -34,7 +34,7 @@ public class ArenaServlet extends DerbyServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String url = "/Arenas.jsp";
 		ServletContext ctx = request.getServletContext();
-		getEntityManager(request, response);
+		getEntityManagerFactory(request, response);
 		LeagueDAO ldao = new LeagueDAO(emf);
 		ArrayList<Arena> arenas = new ArrayList<Arena>();
 		try {

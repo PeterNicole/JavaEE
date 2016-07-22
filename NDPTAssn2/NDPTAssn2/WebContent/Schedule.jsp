@@ -19,6 +19,7 @@
 			<th>Home</th>
 			<th>Visitor</th>
 			<th style="text-align:center">Home Score-Visitor Score</th>
+			<th></th>
 		</tr>
 		<c:forEach var = "game" items = "${scheduledGames}">
 			<tr>
@@ -28,7 +29,10 @@
 				<td>${game.home.teamName}</td>	
 				<td>${game.visitor.teamName}</td>	
 				<td></td>	
-				<td></td>					
+				<td><a class="btn btn-primary" href="<c:url value='/UpdateGame'>
+						<c:param name='gameId' value='${game.gameId}'></c:param>
+						</c:url>">Update</a>	
+					</td>					
 			</tr>
 		</c:forEach>
 	</table>

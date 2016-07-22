@@ -8,31 +8,26 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <jsp:include page="Banner.jsp" />
 	<br/>
-	<h1>Teams By Standing</h1>
+	<h1>League Standing</h1>
 	<table class="table table-striped">
 		<tr>
 			<th>Team Name</th>
-			<th>League</th>
-			<th>Sponsor</th>
-			<th>Website</th>
-			<th>Head Coach</th>
-			<th>Assistant Coach</th>
-			<th>Manager</th>
-			<th colspan="2">Wins-Ties-Losses</th>
+			<th style="text-align:center;">Points</th>
+			<th style="text-align:center;">Games Played</th>
+			<th style="text-align:center;">Wins</th>
+			<th style="text-align:center;">Losses</th>
+			<th style="text-align:center;">Overtime Losses</th>
 			<th colspan="1"></th>
 			<th colspan="1"></th>
 		</tr>
 		<c:forEach var = "team" items = "${teams}">
 			<tr>
 				<td>${team.teamName}</td>	
-				<td>${team.league.leagueName}</td>	
-				<td>${team.sponsor}</td>	
-				<td><a target="_blank" href="http://${team.website}">${team.website }</a></td>	
-				<td>${team.headCoach.firstName} ${team.headCoach.lastName }</td>	
-				<td>${team.asstCoach.firstName} ${team.asstCoach.lastName }</td>	
-				<td>${team.manager.firstName} ${team.manager.lastName }</td>	
- 				<td style="text-align:right"><%--${team.wins}-${team.ties}-${team.losses} --%></td> 
-				<td></td>
+				<td style="text-align:center;">${team.points}</td>	
+				<td style="text-align:center;">${team.totalGames}</td>	
+				<td style="text-align:center;">${team.wins}</a></td>	
+				<td style="text-align:center;">${team.losses}</td>	
+				<td style="text-align:center;">${team.overtimeLosses}</td>	
 				<td>
 					<a class="btn btn-primary" href="
 						<c:url value='/Roster'>

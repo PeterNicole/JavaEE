@@ -1,0 +1,47 @@
+<!-- 
+ * @author Nicole Dahlquist & Peter Thomson
+ * July 22, 2016
+ * PROG3060 - NDPTAssn2
+ * UpdateGame.jsp
+ * jsp for updating game
+ -->
+ 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+
+<jsp:include page="Banner.jsp" />
+
+	<br/>
+	
+	<form name="frmUpdateGame">
+		<div class="form-group row col-md-offset-1">
+		<h1>Update Game</h1>
+		<p><b>Home Team: </b>${game.home.teamName}</p>
+		<p><b>Visitor Team: </b>${game.visitor.teamName}</p>
+		<p><b>Arena: </b>${game.arena.arenaName}</p>
+		<p><b>Game Date: </b><fmt:formatDate value="${game.gameDate}" pattern="dd-MM-yyyy" /></p>
+		<p><b>Game Time: </b><fmt:formatDate value="${game.gameTime}" pattern="h:mm a" /></p>
+		</div>
+	
+		<div class="form-group row">
+		<label for="homeScore" class="col-md-offset-1 col-md-2"><b>Home Score: </b></label>
+		<input id="homeScore" name="homeScore" type="number" class="form-control col-md-9" style="max-width:50%;"/>
+		</div>
+		
+		<div class="form-group row">
+		<label for="visitorScore" class="col-md-offset-1 col-md-2"><b>Visitor Score: </b></label>
+		<input id="homeScore" name="visitorScore" type="number" class="form-control col-md-9" style="max-width:50%;"/>
+		</div>
+		
+		<div class="form-group row">
+		<label for="SO_OT" class="col-md-offset-1"><b>Shoot Out or Over Time: </b></label><br/>
+		<label for="SO" class="radio-inline col-md-offset-1">SO:</label><input type="radio" name="SO_OT" id="SO" class="radio-inline"/>
+		<label for="OT" class="radio-inline col-md-offset-1">OT:</label><input type="radio" name="SO_OT" id="OT" class="radio-inline"/>
+		</div>
+		
+		<div class="form-group row">
+		<input type="submit" id="updateGameSubmit" value="Update"/>
+		</div>
+	</form>
+	
+<jsp:include page="Footer.jsp" />

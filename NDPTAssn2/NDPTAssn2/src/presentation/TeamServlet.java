@@ -42,17 +42,20 @@ public class TeamServlet extends DerbyServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String url = "/Teams.jsp";
 		ServletContext ctx = request.getServletContext();
-		getEntityManager(request, response);
-		LeagueDAO ldao = new LeagueDAO(emf);
-		ArrayList<Team> teams = new ArrayList<Team>();
-		try {
-			teams = ldao.getTeams();			
-		} 
-		catch (Exception e) {
-			e.printStackTrace();
-		}
-		request.setAttribute("teams", teams);
-		ctx.getRequestDispatcher(url).forward(request, response);
+		getEntityManagerFactory(request, response);
+		if(emf != null)
+		{
+			LeagueDAO ldao = new LeagueDAO(emf);
+			ArrayList<Team> teams = new ArrayList<Team>();
+			try {
+				teams = ldao.getTeams();			
+			} 
+			catch (Exception e) {
+				e.printStackTrace();
+			}
+			request.setAttribute("teams", teams);
+			ctx.getRequestDispatcher(url).forward(request, response);
+		}		
 	}
 
 	/**

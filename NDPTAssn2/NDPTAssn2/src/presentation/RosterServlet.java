@@ -41,7 +41,7 @@ public class RosterServlet extends DerbyServlet {
 		ServletContext ctx = getServletContext();		
 		
 		//Attempt to get a connection, redirects to login page if no connection found
-		getEntityManager(request, response);
+		getEntityManagerFactory(request, response);
 		
 		//If connection to database exists, retrieve roster information from DAO object
 		if(emf != null){

@@ -1,0 +1,57 @@
+<!-- 
+ * @author Nicole Dahlquist & Peter Thomson
+ * July 22, 2016
+ * PROG3060 - NDPTAssn2
+ * UpdateGame.jsp
+ * jsp for updating game
+ -->
+ 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+
+<jsp:include page="Banner.jsp" />
+
+	<br/>
+	
+	<form name="frmUpdateGame">
+		<div class="form-group row col-md-offset-1">
+		<h1 class="col-md-3">Update Game</h1>
+		</div>
+		<div class="form-group row col-md-offset-1">
+		<p><b class="col-md-3">Home Team: </b>${game.home.teamName}</p>
+		</div>
+		<div class="form-group row col-md-offset-1">
+		<p><b class="col-md-3">Visitor Team: </b>${game.visitor.teamName}</p>
+		</div>
+		<div class="form-group row col-md-offset-1">
+		<p><b class="col-md-3">Arena: </b>${game.arena.arenaName}</p>
+		</div>
+		<div class="form-group row col-md-offset-1">
+		<p><b class="col-md-3">Game Date: </b><fmt:formatDate value="${game.gameDate}" pattern="dd-MM-yyyy" /></p>
+		</div>
+		<div class="form-group row col-md-offset-1">
+		<p><b class="col-md-3">Game Time: </b><fmt:formatDate value="${game.gameTime}" pattern="h:mm a" /></p>
+		</div>
+	
+		<div class="form-group row">
+		<label for="homeScore" class="col-md-offset-1 col-md-3"><b>Home Score: </b></label>
+		<input id="homeScore" name="homeScore" type="number" class="form-control col-md-8" style="max-width:50%;"/>
+		</div>
+		
+		<div class="form-group row">
+		<label for="visitorScore" class="col-md-offset-1 col-md-3"><b>Visitor Score: </b></label>
+		<input id="homeScore" name="visitorScore" type="number" class="form-control col-md-8" style="max-width:50%;"/>
+		</div>
+		
+		<div class="form-group row">
+		<label for="SO_OT" class="col-md-offset-1 col-md-3"><b>Shoot Out or Over Time: </b></label>
+		<label for="SO" class="radio-inline col-md-offset-1">SO:</label><input type="radio" name="SO_OT" id="SO" class="radio-inline"/>
+		<label for="OT" class="radio-inline col-md-offset-1">OT:</label><input type="radio" name="SO_OT" id="OT" class="radio-inline"/>
+		</div>
+		
+		<div class="form-group row col-md-offset-8">
+		<input type="submit" id="updateGameSubmit" value="Update" class="btn btn-primary"/>
+		</div>
+	</form>
+	
+<jsp:include page="Footer.jsp" />

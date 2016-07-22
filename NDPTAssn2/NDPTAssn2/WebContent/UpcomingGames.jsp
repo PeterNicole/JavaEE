@@ -18,15 +18,21 @@
 			<th>Home</th>
 			<th>Visitor</th>
 			<th>Arena Name</th>
+			<th></th>
 		</tr>
 		<c:forEach var = "game" items = "${upcomingGames}">
-			<tr>
-				<td><fmt:formatDate value="${game.gameDate}" pattern="dd-MM-yyyy" /></td>
-				<td><fmt:formatDate value="${game.gameTime}" pattern="h:mm a" /></td>					
-				<td>${game.home.teamName}</td>	
-				<td>${game.visitor.teamName}</td>	
-				<td>${game.arena.arenaName}</td>				
-			</tr>
+							
+				<tr>
+					<td><fmt:formatDate value="${game.gameDate}" pattern="dd-MM-yyyy" /></td>
+					<td><fmt:formatDate value="${game.gameTime}" pattern="h:mm a" /></td>					
+					<td>${game.home.teamName}</td>	
+					<td>${game.visitor.teamName}</td>	
+					<td>${game.arena.arenaName}</td>	
+					<td><a  class="btn btn-primary" href="<c:url value='/UpdateGame'>
+						<c:param name='gameId' value='${game.gameId}'></c:param>
+						</c:url>">Update</a>	
+					</td>		
+				</tr>
 		</c:forEach>
 	</table>
 		

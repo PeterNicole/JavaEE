@@ -8,6 +8,7 @@
 package persistence;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -87,6 +88,36 @@ public class LeagueDAO {
 		return games;
 	}
 	
+	/**
+	 * Retrieves a game
+	 */
+	public Game getGame(int gameId)
+	{
+		Game game = new Game();
+		em = emf.createEntityManager();
+		em.getTransaction().begin();
+		game = (Game)em.createQuery("SELECT g FROM Game g "
+			+ "WHERE g.gameId = :gameId")
+			.setParameter("gameId", gameId)
+			.getSingleResult();
+		em.close();
+		return game;
+	}
+	
+	/**
+	 * Update a game score
+	 */
+	public void updateGameScore(int gameId, int homeScore, int visitorScore, String SO, String OT)
+	{
+		em = emf.createEntityManager();
+		em.getTransaction().begin();
+		Game game = getGame(gameId);
+		game.setHomeScore(homeScore);
+		game.setVisitorScore(visitorScore);
+		game.setSO(SO);
+		game.setOT(OT);
+		em.getTransaction().commit();
+	}
 	// player queries
 	/**
 	 * Retrieves a player
@@ -165,6 +196,8 @@ public class LeagueDAO {
 			+ "WHERE t.league = 'NHL'", Team.class)
 			.getResultList();
 		em.close();
+		//Sorts teams in order of wins > ties > losses using Comparable interface
+		Collections.sort(teams);
 		return teams;
 	}
 	// arena queries
@@ -180,36 +213,5 @@ public class LeagueDAO {
 			Arena.class).getResultList();
 		em.close();
 		return arenas;
-	}
-	
-	// standings queries
-	/**
-	 * Gets the total number of wins for a particular team
-	 * @param teamID id of team to get number of wins for
-	 * @return total number of wins
-	 */
-	public int getWins(String teamID){
-		
-		return 0;
-	}
-	
-	/**
-	 * Gets the total number of losses for a particular team
-	 * @param teamID id of team to get number of losses for
-	 * @return total number of losses
-	 */
-	public int getLosses(String teamID){
-		
-		return 0;
-	}
-	
-	/**
-	 * Gets the total number of ties for a particular team
-	 * @param teamID id of team to get number of ties for
-	 * @return total number of ties
-	 */
-	public int getTies(String teamID){
-		
-		return 0;
 	}
 }

@@ -30,14 +30,14 @@
 		                <ul class="nav navbar-nav" style="padding-top:10px;">
 		                    <li>
 		                    	<a class="headerLinks" href="<c:url value='/Arena'>
-		                    	</c:url>" >Arenas</a>
+		                    	</c:url>">Arenas</a>
 		                   	</li>
 							<li>
 								<a class="headerLinks" href="<c:url value='/UpcomingGame'>
-								</c:url>"  >Upcoming Games</a>
+								</c:url>">Upcoming Games</a>
 							</li>
 							<li><a class="headerLinks" href="<c:url value='/Team'>
-								</c:url>"  >Teams</a>
+								</c:url>">Teams</a>
 							</li>
 		                </ul>
 		            </div>
@@ -46,3 +46,4 @@
 	        <h1 style="padding: 70px 0 30px 0;" class="col-sm-offset-3 col-sm-9"><img src="images/Peter-Puck.jpg" width="10%" height="10%" alt="Roll The Dice"/>  NDPT Hockey Central</h1>
 		    <div class="row"><br/></div>
 	    </header>
+	    <div class="col-md-12">

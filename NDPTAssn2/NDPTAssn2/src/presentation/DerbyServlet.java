@@ -31,7 +31,7 @@ public abstract class DerbyServlet extends HttpServlet {
 	 * @param response Response object
 	 * @throws ServletException
 	 */
-	protected void getEntityManager(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void getEntityManagerFactory(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//Initialize local variables
 		
 		emf = null;

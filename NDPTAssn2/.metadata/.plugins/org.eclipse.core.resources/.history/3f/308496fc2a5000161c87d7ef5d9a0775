@@ -1,0 +1,28 @@
+<!-- 
+ * @author Nicole Dahlquist & Peter Thomson
+ * July 22, 2016
+ * PROG3060 - NDPTAssn2
+ * UpdateGame.jsp
+ * jsp for updating game
+ -->
+ 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<jsp:include page="Banner.jsp" />
+	<br/>
+	<h1>Update Game</h1>
+	<p><b>Home Team: </b>${game.team.home.teamName}</p>
+	<p><b>Visitor Team: </b>${game.team.visitor.teamName}</p>
+	<p><b>Arena: </b>${game.arena.arenaName}</p>
+	<p><b>Game Date: </b>${game.gameDate}</p>
+	<p><b>Game Time: </b>${game.gameTime}</p>
+	
+	<label for="homeScore"><b>Home Score: </b></label>
+	<input id="homeScore" name="homeScore" type="number"/>
+	
+	<label for="visitorScore"><b>Visitor Score: </b></label>
+	<input id="homeScore" name="visitorScore" type="number"/>
+	
+	<label for="SO_OT"><b>Shoot Out or Over Time: </b></label>
+	<input type="radio" value="SO"/>
+	<input type="radio" value="OT"/>
+<jsp:include page="Footer.jsp" />

@@ -1,0 +1,49 @@
+<!-- 
+ * @author Nicole Dahlquist & Peter Thomson
+ * July 12, 2016
+ * PROG3060 - NDPTAssn2
+ * Teams.jsp
+ * jsp for displaying team info
+ -->
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<jsp:include page="Banner.jsp" />
+	<br/>
+	<h1>League Standing</h1>
+	<table class="table table-striped">
+		<tr>
+			<th>Team Name</th>
+			<th style="text-align:centre;">Points</th>
+			<th style="text-align:centre;">Games Played</th>
+			<th style="text-align:centre;">Wins</th>
+			<th style="text-align:centre;">Losses</th>
+			<th style="text-align:centre;">Overtime Losses</th>
+			<th colspan="1"></th>
+			<th colspan="1"></th>
+		</tr>
+		<c:forEach var = "team" items = "${teams}">
+			<tr>
+				<td>${team.teamName}</td>	
+				<td>${team.points}</td>	
+				<td>${team.totalGames}</td>	
+				<td>${team.wins}</a></td>	
+				<td>${team.losses}</td>	
+				<td>${team.overtimeLosses}</td>	
+				<td>
+					<a class="btn btn-primary" href="
+						<c:url value='/Roster'>
+							<c:param name='teamID' value='${team.teamId}'></c:param>
+						</c:url>">Roster
+					</a>							
+				</td>		
+				<td>
+					<a class="btn btn-primary" href="
+						<c:url value='/Schedule'>
+								<c:param name='teamID' value='${team.teamId}'></c:param>
+								<c:param name='teamName' value='${team.teamName}'></c:param>
+						</c:url>">Schedule
+					</a>							
+				</td>			
+			</tr>
+		</c:forEach>
+	</table>
+<jsp:include page="Footer.jsp" />

@@ -8,18 +8,15 @@
 package presentation;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import persistence.Game;
 import persistence.LeagueDAO;
-import persistence.Team;
 
 /** 
  * @author Nicole Dahlquist & Peter Thomson
@@ -73,9 +70,7 @@ public class UpdateGameServlet extends DerbyServlet {
 	 * @throws ServletException
 	 * @throws IOException
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		ServletContext ctx = getServletContext();
-		
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {		
 		//Attempt to get database connection, redirects to login page if no connection found
 		getEntityManagerFactory(request, response);
 		
@@ -84,31 +79,38 @@ public class UpdateGameServlet extends DerbyServlet {
 			String url = "/UpcomingGame";
 			LeagueDAO ldao = new LeagueDAO(emf);
 			int gameId = Integer.parseInt(request.getParameter("gameId"));
-			int homeScore = Integer.parseInt(request.getParameter("homeScore"));
-			int visitorScore = Integer.parseInt(request.getParameter("visitorScore"));
-			String SO_OT = request.getParameter("SO_OT");
+			int homeScore = 0;
+			int visitorScore = 0;
 			String SO = "";
 			String OT = "";
-			if(SO_OT == null) {SO_OT = "";}
-			switch(SO_OT)
+			if(!request.getParameter("homeScore").isEmpty() && !request.getParameter("visitorScore").isEmpty())
 			{
-				case "SO-Y":
-					SO = "Y"; 
-					OT = "Y"; 
-					break;
-				case "OT-Y":
-					SO = "N"; 
-					OT = "Y"; 
-					break;
-				default:
-					SO = "N";
-					OT = "N";
-					break;
+				homeScore = Integer.parseInt(request.getParameter("homeScore"));
+				visitorScore = Integer.parseInt(request.getParameter("visitorScore"));
+				String SO_OT = request.getParameter("SO_OT");
+				SO = "";
+				OT = "";
+				if(SO_OT == null) {SO_OT = "";}
+				switch(SO_OT)
+				{
+					case "SO-Y":
+						SO = "Y"; 
+						OT = "Y"; 
+						break;
+					case "OT-Y":
+						SO = "N"; 
+						OT = "Y"; 
+						break;
+					default:
+						SO = "N";
+						OT = "N";
+						break;
+				}
 			}
 			
 			if(homeScore == visitorScore)
 			{
-				url = "/UpdateGame.jsp?error=true";				
+				url = "/UpdateGame?error=true&gameId=" + gameId;				
 			}
 			else
 			{

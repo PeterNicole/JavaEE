@@ -25,7 +25,7 @@
 				<td>${team.teamName}</td>	
 				<td style="text-align:center;">${team.points}</td>	
 				<td style="text-align:center;">${team.totalGames}</td>	
-				<td style="text-align:center;">${team.wins}</a></td>	
+				<td style="text-align:center;">${team.wins}</td>	
 				<td style="text-align:center;">${team.losses}</td>	
 				<td style="text-align:center;">${team.overtimeLosses}</td>	
 				<td>

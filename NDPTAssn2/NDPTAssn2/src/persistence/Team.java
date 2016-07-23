@@ -37,7 +37,6 @@ public class Team implements Comparable<Team>{
 	private int losses;
 	private int totalGames;
 	private int points;
-	private Set allGames;
 	
 	@Id
 	public String getTeamId() {
@@ -191,7 +190,6 @@ public class Team implements Comparable<Team>{
 		overtimeLosses = 0;
 		for(Game g : (Set<Game>)homeGames)
 		{
-			String ot = g.getOT();
 			if(g.getHomeScore() != null && g.getVisitorScore() != null)
 			{
 				if((g.getHomeScore().intValue() < g.getVisitorScore().intValue()) && g.getOT().equals("Y"))

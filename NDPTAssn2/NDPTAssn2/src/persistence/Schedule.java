@@ -11,8 +11,14 @@ import javax.persistence.*;
 import java.util.Set;
 
 @Entity
+/**
+ * Entity class for the Schedule table in the league database
+ * @author Peter Thomson & Nicole Dahlquist
+ *
+ */
 public class Schedule {
 
+	//Class scope variables and constants
 	private int scheduleId;
 	private League league;
 	private String season;

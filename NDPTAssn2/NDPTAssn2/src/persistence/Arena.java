@@ -11,7 +11,14 @@ import javax.persistence.*;
 import java.util.Set;
 
 @Entity
+/**
+ * Entity class for the Arena table in the league database
+ * @author Peter Thomson & Nicole Dahlquist
+ *
+ */
 public class Arena {
+	
+	//Class scope variables and constants
 	private int arenaId;
 	private String arenaName;
 	private String streetAddress;
@@ -21,7 +28,7 @@ public class Arena {
 	private String country;
 	private String phone;
 	private int capacity;
-	private Set games;  // might need to be singular
+	private Set games; 
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)

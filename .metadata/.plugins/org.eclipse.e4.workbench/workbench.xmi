@@ -194,7 +194,7 @@
           <tags>persp.newWizSC:org.eclipse.m2e.core.wizards.Maven2ProjectWizard</tags>
           <tags>persp.actionSet:org.eclipse.wst.ws.explorer.explorer</tags>
           <children xsi:type="basic:PartSashContainer" xmi:id="_gPxDYTPXEealR5ZxMpyeCA" selectedElement="_gPxDYjPXEealR5ZxMpyeCA" horizontal="true">
-            <children xsi:type="basic:PartSashContainer" xmi:id="_gPxDYjPXEealR5ZxMpyeCA" containerData="3056" selectedElement="_gPxDYzPXEealR5ZxMpyeCA">
+            <children xsi:type="basic:PartSashContainer" xmi:id="_gPxDYjPXEealR5ZxMpyeCA" containerData="1891" selectedElement="_gPxDYzPXEealR5ZxMpyeCA">
               <children xsi:type="basic:PartStack" xmi:id="_gPxDYzPXEealR5ZxMpyeCA" elementId="topLeft" containerData="6000" selectedElement="_gPxDZDPXEealR5ZxMpyeCA">
                 <tags>newtablook</tags>
                 <tags>active</tags>
@@ -208,7 +208,7 @@
                 <children xsi:type="advanced:Placeholder" xmi:id="_gPxDaTPXEealR5ZxMpyeCA" elementId="oracle.eclipse.tools.cloud.ui.CloudProfileView" toBeRendered="false" ref="_gPuAEDPXEealR5ZxMpyeCA"/>
               </children>
             </children>
-            <children xsi:type="basic:PartSashContainer" xmi:id="_gPxDajPXEealR5ZxMpyeCA" containerData="6944" selectedElement="_gPxDazPXEealR5ZxMpyeCA">
+            <children xsi:type="basic:PartSashContainer" xmi:id="_gPxDajPXEealR5ZxMpyeCA" containerData="8109" selectedElement="_gPxDazPXEealR5ZxMpyeCA">
               <children xsi:type="basic:PartSashContainer" xmi:id="_gPxDazPXEealR5ZxMpyeCA" containerData="6446" selectedElement="_gPxDbDPXEealR5ZxMpyeCA" horizontal="true">
                 <children xsi:type="advanced:Placeholder" xmi:id="_gPxDbDPXEealR5ZxMpyeCA" elementId="org.eclipse.ui.editorss" containerData="9000" ref="_2_EekDNjEealR5ZxMpyeCA"/>
                 <children xsi:type="basic:PartStack" xmi:id="_gPxDbTPXEealR5ZxMpyeCA" elementId="topRight" containerData="1000" selectedElement="_gPxDbjPXEealR5ZxMpyeCA">
@@ -487,13 +487,13 @@
       </children>
       <children xsi:type="menu:ToolBar" xmi:id="_21JGgDNjEealR5ZxMpyeCA" elementId="org.eclipse.ui.workbench.file">
         <tags>Draggable</tags>
-        <children xsi:type="menu:HandledToolItem" xmi:id="_pWH6EFBWEeayHbqQfnGf1w" elementId="print" iconURI="platform:/plugin/org.eclipse.ui/icons/full/etool16/print_edit.png" tooltip="Print" enabled="false" command="_2erHSzNjEealR5ZxMpyeCA"/>
+        <children xsi:type="menu:HandledToolItem" xmi:id="_Zqg70FBhEea43OGGdfUYUQ" elementId="print" iconURI="platform:/plugin/org.eclipse.ui/icons/full/etool16/print_edit.png" tooltip="Print" enabled="false" command="_2erHSzNjEealR5ZxMpyeCA"/>
       </children>
       <children xsi:type="menu:ToolBar" xmi:id="_21JGgTNjEealR5ZxMpyeCA" elementId="additions" toBeRendered="false">
         <tags>toolbarSeparator</tags>
         <children xsi:type="menu:ToolBarSeparator" xmi:id="_21JtkDNjEealR5ZxMpyeCA" elementId="additions" toBeRendered="false"/>
       </children>
-      <children xsi:type="menu:ToolBar" xmi:id="_B5JDMDPXEealR5ZxMpyeCA" elementId="org.eclipse.datatools.sqltools.sqlscrapbook.actionSet">
+      <children xsi:type="menu:ToolBar" xmi:id="_B5JDMDPXEealR5ZxMpyeCA" elementId="org.eclipse.datatools.sqltools.sqlscrapbook.actionSet" visible="false">
         <tags>Draggable</tags>
       </children>
       <children xsi:type="menu:ToolBar" xmi:id="_3AsPMDNjEealR5ZxMpyeCA" elementId="org.eclipse.debug.ui.launchActionSet">
@@ -520,7 +520,7 @@
       </children>
       <children xsi:type="menu:ToolBar" xmi:id="_21KUoDNjEealR5ZxMpyeCA" elementId="org.eclipse.ui.workbench.navigate">
         <tags>Draggable</tags>
-        <children xsi:type="menu:HandledToolItem" xmi:id="_pWMykVBWEeayHbqQfnGf1w" elementId="org.eclipse.ui.window.pinEditor" visible="false" iconURI="platform:/plugin/org.eclipse.ui/icons/full/etool16/pin_editor.png" tooltip="Pin Editor" type="Check" command="_2elnuzNjEealR5ZxMpyeCA"/>
+        <children xsi:type="menu:HandledToolItem" xmi:id="_Zqo3oVBhEea43OGGdfUYUQ" elementId="org.eclipse.ui.window.pinEditor" visible="false" iconURI="platform:/plugin/org.eclipse.ui/icons/full/etool16/pin_editor.png" tooltip="Pin Editor" type="Check" command="_2elnuzNjEealR5ZxMpyeCA"/>
       </children>
       <children xsi:type="menu:ToolBar" xmi:id="_21KUoTNjEealR5ZxMpyeCA" elementId="group.editor" toBeRendered="false">
         <tags>toolbarSeparator</tags>
@@ -530,7 +530,7 @@
         <tags>toolbarSeparator</tags>
         <children xsi:type="menu:ToolBarSeparator" xmi:id="_21KUpDNjEealR5ZxMpyeCA" elementId="group.help" toBeRendered="false"/>
       </children>
-      <children xsi:type="menu:ToolBar" xmi:id="_21KUpTNjEealR5ZxMpyeCA" elementId="org.eclipse.ui.workbench.help">
+      <children xsi:type="menu:ToolBar" xmi:id="_21KUpTNjEealR5ZxMpyeCA" elementId="org.eclipse.ui.workbench.help" visible="false">
         <tags>Draggable</tags>
       </children>
       <children xsi:type="menu:ToolControl" xmi:id="_25s2YDNjEealR5ZxMpyeCA" elementId="PerspectiveSpacer" contributionURI="bundleclass://org.eclipse.e4.ui.workbench.renderers.swt/org.eclipse.e4.ui.workbench.renderers.swt.LayoutModifierToolControl">

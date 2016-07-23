@@ -1,0 +1,57 @@
+/**
+ * @author Nicole Dahlquist & Peter Thomson
+ * July 12, 2016
+ * PROG3060 - NDPTAssn2
+ * ArenaServlet.java
+ * Servlet class for displaying Arena data
+ */
+
+package presentation;
+
+import java.io.IOException;
+import java.util.ArrayList;
+
+import javax.servlet.ServletContext;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import persistence.Arena;
+import persistence.LeagueDAO;
+
+/**
+ * 
+ * @author Nicole Dahlquist & Peter Thomson
+ * Servlet class for displaying Arena data
+ * 
+ */
+@WebServlet("/Arena")
+public class ArenaServlet extends DerbyServlet {
+	private static final long serialVersionUID = 1L;       
+
+	/**
+	 * doGet method for the arena servlet
+	 * @param request
+	 * @param response
+	 * @throws ServletException
+	 * @throws IOException
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String url = "/Arenas.jsp";
+		ServletContext ctx = request.getServletContext();
+		getEntityManagerFactory(request, response);
+		LeagueDAO ldao = new LeagueDAO(emf);
+		ArrayList<Arena> arenas = new ArrayList<Arena>();
+		try {
+			arenas = ldao.getArenas();			
+		} 
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+		request.setAttribute("arenas", arenas);
+		ctx.getRequestDispatcher(url).forward(request, response);
+	}
+
+}

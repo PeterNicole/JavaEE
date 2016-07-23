@@ -9,7 +9,14 @@ package persistence;
 import javax.persistence.*;
 
 @Entity
+/**
+ * Entity class for the PlayerStats table in the league database
+ * @author Peter Thomson & Nicole Dahlquist
+ *
+ */
 public class PlayerStats {
+	
+	//Class scope variables and constants
 	private int statsId;
 	private Player player;
 	private Roster roster;

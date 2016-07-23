@@ -16,23 +16,24 @@ import javax.persistence.TypedQuery;
 
 /**
  * Retrieves persisted data from the LeagueDB Derby Database
+ * @author Peter Thomson & Nicole Dahlquist
+ *
  */
 public class LeagueDAO {
 
-	//Class scope variables
-	
+	//Class scope variables	and constants
 	private EntityManagerFactory emf;
 	private EntityManager em;
-	//Transaction tx;
 	
 	
 	/**
-	 * Parameterized constructor for injection of connection
-	 * @param conn connection to database
+	 * Parameterized constructor for injection of entity manager factory object
+	 * @param emf
 	 */
 	public LeagueDAO(EntityManagerFactory emf){
 		this.emf = emf;
 	}
+	
 	// games
 	/**
 	 * Retrieves all upcoming games
@@ -49,6 +50,7 @@ public class LeagueDAO {
 		em.close();
 		return games;
 	}
+	
 	/**
 	 * Retrieves a list of completed games for a particular team
 	 * @param teamID id of team to retrieve completed games for
@@ -89,7 +91,9 @@ public class LeagueDAO {
 	}
 	
 	/**
-	 * Retrieves a game
+	 * Retrieves a game with the specified game id
+	 * @param gameId of game to retrieve
+	 * @return Game object
 	 */
 	public Game getGame(int gameId)
 	{
@@ -105,7 +109,12 @@ public class LeagueDAO {
 	}
 	
 	/**
-	 * Update a game score
+	 * Updates the score of a specified game
+	 * @param gameId Id of game to update score for
+	 * @param homeScore Home team score
+	 * @param visitorScore Visitor team score
+	 * @param SO 'Y' if game went into shootout, otherwise 'N'
+	 * @param OT 'Y' if game went into overtime/shootout, otherwise 'N'
 	 */
 	public void updateGameScore(int gameId, int homeScore, int visitorScore, String SO, String OT)
 	{
@@ -118,9 +127,12 @@ public class LeagueDAO {
 		game.setOT(OT);
 		em.getTransaction().commit();
 	}
-	// player queries
+	
+	// Roster queries
 	/**
-	 * Retrieves a player
+	 * Retrieves a specific roster
+	 * @param rosterID Id of roster to retrieve
+	 * @return Roster
 	 */
 	public Roster getRoster(int rosterID)
 	{
@@ -133,10 +145,12 @@ public class LeagueDAO {
 		em.close();
 		return roster;
 	}
+	
 	/**
-	 * Retrieves a list of all players for a particular team
-	 * @param teamID id of team to retrieve players for
-	 * @return List<Player> containing all players on the team specified
+	 * Retrieves all rosters for a specific team , for the specified positions
+	 * @param teamID Id of team to retrieve rosters for
+	 * @param position variable argument containing names of positions to match
+	 * @return ArrayList<Roster> containing matching rosters
 	 */
 	public ArrayList<Roster> getRosters(String teamID, String ... position ){
 		ArrayList<Roster> rosters = new ArrayList<Roster>();
@@ -169,9 +183,11 @@ public class LeagueDAO {
 		return rosters;
 	}
 	
-	// team queries
+	// Team queries
 	/**
-	 * Retrieves a specific team
+	 * Gets a specific team
+	 * @param teamId id of team to retrieve
+	 * @return Team
 	 */
 	public Team getTeam(String teamId)
 	{
@@ -184,6 +200,7 @@ public class LeagueDAO {
 		em.close();
 		return team;
 	}
+	
 	/**
 	 * Retrieves a list of all teams in the database
 	 * @return ArrayList<Team> containing all teams
@@ -200,9 +217,11 @@ public class LeagueDAO {
 		Collections.sort(teams);
 		return teams;
 	}
-	// arena queries
+	
+	// Arena queries
 	/**
-	 * Get the arenas
+	 * Retrieves a list of all arenas in the database
+	 * @return ArrayList<Arena> containing all arenas
 	 */
 	public ArrayList<Arena> getArenas()
 	{

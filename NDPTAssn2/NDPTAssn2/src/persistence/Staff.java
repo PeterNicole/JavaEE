@@ -11,7 +11,14 @@ import javax.persistence.*;
 import java.util.Set;
 
 @Entity
+/**
+ * Entity class for the Staff table in the league database
+ * @author Peter Thomson & Nicole Dahlquist
+ *
+ */
 public class Staff {
+	
+	//Class scope variables and constants
 	private String staffID;
 	private String lastName;
 	private String firstName;

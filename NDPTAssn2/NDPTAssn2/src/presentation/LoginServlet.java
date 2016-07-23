@@ -29,7 +29,7 @@ public class LoginServlet extends DerbyServlet {
 	
 	/**
 	 * LoginServlet doPost method,
-	 * Retrieves credentials from form and authenticates/establishes a connection to derby database
+	 * Retrieves credentials from form and authenticates/creates an entity manager factory for the derby database
 	 * @throws IOException 
 	 */
 	@Override
@@ -50,7 +50,7 @@ public class LoginServlet extends DerbyServlet {
 			e.printStackTrace();
 		}
 		
-		//Store connection in application scope variable if it exists
+		//Store entity manager factory in application scope variable if it exists
 		if(emf != null){		
 			ServletContext applicationScope = request.getServletContext();
 			applicationScope.setAttribute("entityManagerFactory", emf);			

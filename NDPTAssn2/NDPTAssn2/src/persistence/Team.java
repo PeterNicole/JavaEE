@@ -11,8 +11,15 @@ import javax.persistence.*;
 import java.util.Set;
 
 @Entity
+/**
+ * Entity class for the Team table in the league database
+ * @author Peter Thomson & Nicole Dahlquist
+ *
+ */
 public class Team implements Comparable<Team>{
 		
+	//Class scope variables and constants
+	private final int WINS_POINTS = 2;
 	private String teamId;
 	private League league;
 	private String teamName;
@@ -146,6 +153,10 @@ public class Team implements Comparable<Team>{
 	}
 
 	@Transient
+	/**
+	 * Unmapped property which returns the number of wins for the current team
+	 * @return int
+	 */
 	public int getWins() {
 		wins = 0;
 		for(Game g : (Set<Game>)getHomeGames())
@@ -172,6 +183,10 @@ public class Team implements Comparable<Team>{
 	}
 
 	@Transient
+	/**
+	 * Unmapped property which returns the number of losses in overtime for the current team
+	 * @return int
+	 */
 	public int getOvertimeLosses() {
 		overtimeLosses = 0;
 		for(Game g : (Set<Game>)homeGames)
@@ -199,6 +214,10 @@ public class Team implements Comparable<Team>{
 	}
 
 	@Transient
+	/**
+	 * Unampped property which returns the number of losses that were not in overtime for the current team
+	 * @return int
+	 */
 	public int getLosses() {
 		losses = 0;
 		for(Game g : (Set<Game>)homeGames)
@@ -225,19 +244,27 @@ public class Team implements Comparable<Team>{
 	}
 
 	@Transient
+	/**
+	 * Unmapped property which returns the total number of games the current team has played
+	 * @return
+	 */
 	public int getTotalGames() {
 		return (getWins() + getLosses() + getOvertimeLosses());
 	}
 
 	@Transient
+	/**
+	 * Unmapped property which returns the total number of points the current team has in the standings
+	 * @return
+	 */
 	public int getPoints() {
 		points = 0;
-		return (2 * getWins() + 1 * getOvertimeLosses());
+		return ( WINS_POINTS * getWins() + getOvertimeLosses());
 	}
 	
 	@Override
 	/**
-	 * Implementation of Comparable interface to allow easy sorting of teams by wins, losses, and ties
+	 * Implementation of Comparable interface to allow easy sorting of teams by points
 	 */
 	public int compareTo(Team o) {		
 		return o.getPoints() - getPoints();

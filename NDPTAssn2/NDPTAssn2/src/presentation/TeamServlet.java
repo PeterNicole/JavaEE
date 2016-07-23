@@ -2,8 +2,8 @@
  * @author Nicole Dahlquist & Peter Thomson
  * July 12, 2016
  * PROG3060 - NDPTAssn2
- * STeamServlet.java
- * Servlet for displaying team information
+ * TeamServlet.java
+ * Servlet for displaying team information on Teams.jsp
  */
 package presentation;
 
@@ -21,27 +21,27 @@ import persistence.LeagueDAO;
 import persistence.Team;
 
 /**
- * Servlet implementation class TeamServlet
+ * @author Nicole Dahlquist & Peter Thomson
+ * Servlet for displaying team information on Teams.jsp
  */
 @WebServlet("/Team")
 public class TeamServlet extends DerbyServlet {
-	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public TeamServlet() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
-   
+	private static final long serialVersionUID = 1L;   
     
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * doGet method for the team servlet
+	 * Displays information for all teams
+	 * @param request
+	 * @param response
+	 * @throws ServletException
+	 * @throws IOException
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {		
+		//Initialize local variables
 		String url = "/Teams.jsp";
 		ServletContext ctx = request.getServletContext();
+		
+		//Attempt to retrieve teams data
 		getEntityManagerFactory(request, response);
 		if(emf != null)
 		{
@@ -53,6 +53,8 @@ public class TeamServlet extends DerbyServlet {
 			catch (Exception e) {
 				e.printStackTrace();
 			}
+			
+			//Set teams attribute and forward
 			request.setAttribute("teams", teams);
 			ctx.getRequestDispatcher(url).forward(request, response);
 		}		

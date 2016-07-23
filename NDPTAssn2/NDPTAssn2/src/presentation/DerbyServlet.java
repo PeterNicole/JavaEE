@@ -21,6 +21,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  */
 public abstract class DerbyServlet extends HttpServlet {
+	
 	//Class scope variables and constants
 	private static final long serialVersionUID = 1L;
 	protected EntityManagerFactory emf;

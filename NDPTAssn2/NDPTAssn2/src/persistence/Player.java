@@ -13,8 +13,14 @@ import javax.persistence.*;
 import java.util.Set;
 
 @Entity
+/**
+ * Entity class for the Player table in the league database
+ * @author Peter Thomson & Nicole Dahlquist
+ *
+ */
 public class Player {
 
+	//Class scope variables and constants
 	private int playerId;
 	private String lastName;
 	private String firstName;
@@ -158,7 +164,7 @@ public class Player {
 	}
 	
 	@OneToMany(targetEntity=Roster.class)
-	//@JoinColumn(name="player")
+	@JoinColumn(name="player")
 	public Set getRosters(){
 		return rosters;
 	}

@@ -40,9 +40,6 @@ public class ScheduleServlet extends DerbyServlet {
 		String teamID = request.getParameter("teamID");
 		Team team = new Team();
 		
-		int wins = 0;
-		int losses = 0;
-		int ties = 0;
 		ServletContext ctx = getServletContext();
 		
 		//Attempt to get database connection, redirects to login page if no connection found
@@ -58,9 +55,6 @@ public class ScheduleServlet extends DerbyServlet {
 				scheduledGames = ldao.getScheduledGames(teamID);		
 				completedGames = ldao.getCompletedGames(teamID);
 				team = ldao.getTeam(teamID);
-				//wins = ldao.getWins(teamID);
-				//losses = ldao.getLosses(teamID);
-				//ties = ldao.getTies(teamID);
 			}
 			
 			catch (Exception e) {
@@ -71,9 +65,8 @@ public class ScheduleServlet extends DerbyServlet {
 			request.setAttribute("completedGames", completedGames);
 			request.setAttribute("scheduledGames", scheduledGames);
 			request.setAttribute("team", team);
-			//request.setAttribute("wins", wins);
-			//request.setAttribute("losses", losses);
-			//request.setAttribute("ties", ties);
+			
+			//Forward
 			ctx.getRequestDispatcher(url).forward(request, response);
 		}		
 	}

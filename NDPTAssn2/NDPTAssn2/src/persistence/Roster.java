@@ -11,7 +11,14 @@ import javax.persistence.*;
 import java.util.Set;
 
 @Entity
+/**
+ * Entity class for the Roster table in the league database
+ * @author Peter Thomson & Nicole Dahlquist
+ *
+ */
 public class Roster {
+	
+	//Class scope variables and constants
 	private int rosterId;
 	private Player player;
 	private Team team;

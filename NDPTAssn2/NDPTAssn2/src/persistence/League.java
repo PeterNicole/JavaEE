@@ -11,8 +11,14 @@ import javax.persistence.*;
 import java.util.Set;
 
 @Entity
+/**
+ * Entity class for the League table in the league database
+ * @author Peter Thomson & Nicole Dahlquist
+ *
+ */
 public class League {
 
+	//Class scope variables and constants
 	private String leagueId;
 	private String leagueName;
 	private String leagueSponsor;

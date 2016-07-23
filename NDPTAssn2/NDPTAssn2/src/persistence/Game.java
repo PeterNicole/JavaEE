@@ -12,8 +12,14 @@ import java.util.Date;
 import javax.persistence.*;
 
 @Entity
+/**
+ * Entity class for the Game table in the league database
+ * @author Peter Thomson & Nicole Dahlquist
+ *
+ */
 public class Game {
 
+	//Class scope variables and constants
 	private int gameId;
 	private Schedule schedule;
 	private Date gameDate;

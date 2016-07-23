@@ -3,7 +3,7 @@
  * July 22, 2016
  * PROG3060 - NDPTAssn2
  * UpdateGameServlet.java
- * Servlet for updating a game's score
+ * UpdateGameServlet for updating a game's score on the UpdateGame.jsp
  */
 package presentation;
 
@@ -21,53 +21,57 @@ import persistence.Game;
 import persistence.LeagueDAO;
 import persistence.Team;
 
-/**
- * Servlet implementation class UpdateGame
+/** 
+ * @author Nicole Dahlquist & Peter Thomson
+ * UpdateGameServlet for updating a game's score on the UpdateGame.jsp
  */
 @WebServlet("/UpdateGame")
 public class UpdateGameServlet extends DerbyServlet {
 	private static final long serialVersionUID = 1L;
        
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public UpdateGameServlet() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
-
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * doGet method for UpdateGameServlet
+	 * Displays a form with the game details and fields to input scores and OT status
+	 * @param request
+	 * @param response
+	 * @throws ServletException
+	 * @throws IOException
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//Initialize local variables
-				String url = "/UpdateGame.jsp";
-				ServletContext ctx = getServletContext();
-				
-				//Attempt to get database connection, redirects to login page if no connection found
-				getEntityManagerFactory(request, response);
-				
-				//If connection found, retrieve schedule data from DAO 
-				if(emf != null){
-					LeagueDAO ldao = new LeagueDAO(emf);
-					Game game = new Game();
-					int gameId = Integer.parseInt(request.getParameter("gameId"));
-					try {
-						game = ldao.getGame(gameId);		
-					}
-					
-					catch (Exception e) {
-						e.printStackTrace();
-					}
-					
-					//Set attributes with information to be displayed on jsp
-					request.setAttribute("game", game);
-					ctx.getRequestDispatcher(url).forward(request, response);
-				}		
+		String url = "/UpdateGame.jsp";
+		ServletContext ctx = getServletContext();
+		
+		//Attempt to get database connection, redirects to login page if no connection found
+		getEntityManagerFactory(request, response);
+		
+		//If connection found, retrieve game data from DAO 
+		if(emf != null){
+			LeagueDAO ldao = new LeagueDAO(emf);
+			Game game = new Game();
+			int gameId = Integer.parseInt(request.getParameter("gameId"));
+			
+			try {
+				game = ldao.getGame(gameId);		
+			}
+			
+			catch (Exception e) {
+				e.printStackTrace();
+			}
+			
+			//Set attributes with information to be displayed on jsp
+			request.setAttribute("game", game);
+			ctx.getRequestDispatcher(url).forward(request, response);
+		}		
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	/***
+	 * doPost method for UpdateGameServlet
+	 * Updates a game with the specified scores
+	 * @param request
+	 * @param response
+	 * @throws ServletException
+	 * @throws IOException
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		ServletContext ctx = getServletContext();
@@ -75,7 +79,7 @@ public class UpdateGameServlet extends DerbyServlet {
 		//Attempt to get database connection, redirects to login page if no connection found
 		getEntityManagerFactory(request, response);
 		
-		//If connection found, retrieve schedule data from DAO 
+		//If connection found, retrieve data from the form and update the game in the database
 		if(emf != null){
 			String url = "/UpcomingGame";
 			LeagueDAO ldao = new LeagueDAO(emf);

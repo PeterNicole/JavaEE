@@ -1,3 +1,0 @@
-#GlassFish 3
-#Tue Jul 19 14:01:53 EDT 2016
-org.eclipse.jst.jee.server\:NDPTAssn2=C\:\\glassfish4\\glassfish\\domains\\domain1\\eclipseApps\\NDPTAssn2

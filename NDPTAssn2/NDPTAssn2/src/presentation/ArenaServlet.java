@@ -1,3 +1,11 @@
+/**
+ * @author Nicole Dahlquist & Peter Thomson
+ * July 12, 2016
+ * PROG3060 - NDPTAssn2
+ * ArenaServlet.java
+ * Servlet class for displaying Arena data on Arenas.jsp
+ */
+
 package presentation;
 
 import java.io.IOException;
@@ -14,44 +22,44 @@ import persistence.Arena;
 import persistence.LeagueDAO;
 
 /**
- * Servlet implementation class ArenaServlet
+ * 
+ * @author Nicole Dahlquist & Peter Thomson
+ * Servlet class for displaying Arena data on Arenas.jsp
+ * 
  */
 @WebServlet("/Arena")
 public class ArenaServlet extends DerbyServlet {
-	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public ArenaServlet() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
+	private static final long serialVersionUID = 1L;       
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * doGet method for the arena servlet
+	 * Displays information on all arena's
+	 * @param request
+	 * @param response
+	 * @throws ServletException
+	 * @throws IOException
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String url = "/Arenas.jsp";
 		ServletContext ctx = request.getServletContext();
+		
+		//Retrieve the arena data
 		getEntityManagerFactory(request, response);
-		LeagueDAO ldao = new LeagueDAO(emf);
-		ArrayList<Arena> arenas = new ArrayList<Arena>();
-		try {
-			arenas = ldao.getArenas();			
-		} 
-		catch (Exception e) {
-			e.printStackTrace();
-		}
-		request.setAttribute("arenas", arenas);
-		ctx.getRequestDispatcher(url).forward(request, response);
-	}
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		if(emf == null)
+		{
+			LeagueDAO ldao = new LeagueDAO(emf);
+			ArrayList<Arena> arenas = new ArrayList<Arena>();
+			try {
+				arenas = ldao.getArenas();			
+			} 
+			catch (Exception e) {
+				e.printStackTrace();
+			}
+			
+			//Set the arena attribute and forward to the page
+			request.setAttribute("arenas", arenas);
+			ctx.getRequestDispatcher(url).forward(request, response);			
+		}		
 	}
 
 }

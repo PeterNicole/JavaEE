@@ -1,3 +1,10 @@
+/**
+ * @author Nicole Dahlquist & Peter Thomson
+ * July 12, 2016
+ * PROG3060 - NDPTAssn2
+ * PlayerServlet.java
+ * Servlet class for displaying Player/Roster data on Player.jsp
+ */
 package presentation;
 
 import java.io.IOException;
@@ -16,45 +23,46 @@ import persistence.Roster;
 import persistence.Team;
 
 /**
- * Servlet implementation class PlayerServlet
+ * 
+ * @author Nicole Dahlquist & Peter Thomson
+ * Servlet class for displaying Player/Roster data on Player.jsp
+ * 
  */
 @WebServlet("/Player")
 public class PlayerServlet extends DerbyServlet {
-	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public PlayerServlet() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
+	private static final long serialVersionUID = 1L;       
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * doGet method for the player servlet
+	 * Displays information for a specific player/roster
+	 * @param request
+	 * @param response
+	 * @throws ServletException
+	 * @throws IOException
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		//Initialize local variables
 		String url = "/Player.jsp";
 		ServletContext ctx = request.getServletContext();
+		
+		//Retrieve the roster data for the selected player on a specific team
 		getEntityManagerFactory(request, response);
-		LeagueDAO ldao = new LeagueDAO(emf);
-		int rosterId = Integer.parseInt(request.getParameter("rosterId"));
-		Roster roster = new Roster();
-		try {
-			roster = ldao.getRoster(rosterId);			
-		} 
-		catch (Exception e) {
-			e.printStackTrace();
-		}
-		request.setAttribute("roster", roster);
-		ctx.getRequestDispatcher(url).forward(request, response);
-	}
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		if(emf != null)
+		{
+			LeagueDAO ldao = new LeagueDAO(emf);
+			int rosterId = Integer.parseInt(request.getParameter("rosterId"));
+			Roster roster = new Roster();
+			try {
+				roster = ldao.getRoster(rosterId);			
+			} 
+			catch (Exception e) {
+				e.printStackTrace();
+			}
+			
+			//Set the roster attribute and forward the page
+			request.setAttribute("roster", roster);
+			ctx.getRequestDispatcher(url).forward(request, response);
+		}		
 	}
 
 }

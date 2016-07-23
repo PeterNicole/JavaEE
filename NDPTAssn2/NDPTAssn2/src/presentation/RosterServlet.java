@@ -21,6 +21,7 @@ import persistence.Roster;
 import persistence.Team;
 
 /**
+ * @author Nicole Dahlquist & Peter Thomson
  * Servlet for displaying team roster information on Roster.jsp
  */
 @WebServlet("/Roster")
@@ -40,7 +41,7 @@ public class RosterServlet extends DerbyServlet {
 		String teamID = request.getParameter("teamID");
 		ServletContext ctx = getServletContext();		
 		
-		//Attempt to get a connection, redirects to login page if no connection found
+		//Attempt to get the entity manager factory, redirects to login page if no entity manager found
 		getEntityManagerFactory(request, response);
 		
 		//If connection to database exists, retrieve roster information from DAO object

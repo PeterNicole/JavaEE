@@ -1,0 +1,8 @@
+package leagueEJB;
+
+import javax.ejb.Remote;
+
+@Remote
+public interface GameScoreImplRemote {
+
+}

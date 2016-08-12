@@ -1,0 +1,20 @@
+package leagueEJB;
+
+import javax.ejb.LocalBean;
+import javax.ejb.Stateful;
+
+/**
+ * Session Bean implementation class NextGameImpl
+ */
+@Stateful
+@LocalBean
+public class NextGameImpl implements NextGame {
+
+    /**
+     * Default constructor. 
+     */
+    public NextGameImpl() {
+        // TODO Auto-generated constructor stub
+    }
+
+}

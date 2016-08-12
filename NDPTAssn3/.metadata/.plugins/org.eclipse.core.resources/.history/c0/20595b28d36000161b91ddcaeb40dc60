@@ -1,0 +1,47 @@
+package leagueEJB;
+
+import javax.ejb.LocalBean;
+import javax.ejb.Stateful;
+
+import persistence.Game;
+import persistence.Team;
+
+
+
+/**
+ * Session Bean implementation class GameScoreImpl
+ */
+@Stateful
+@LocalBean
+public class GameScoreImpl implements GameScore {
+
+    /**
+     * Default constructor. 
+     */
+    public GameScoreImpl() {
+        // TODO Auto-generated constructor stub
+    }
+
+	@Override
+	public String getScore(Team team, Game game) {
+		String score = "";
+		if(game.getVisitorScore() != 0 && game.getHomeScore() != 0){			
+			String id = team.getTeamId();
+			if(game.getVisitor().getTeamId().equals(id)){
+				score = game.getVisitorScore() + "-" + game.getHomeScore();	
+			}
+			else if(game.getHome().getTeamId().equals(id)){
+				score = game.getHomeScore() + "-" + game.getVisitorScore();
+			}
+			if(game.getSO().equals("Y")){
+				score += " (SO)";
+			}
+				
+		}
+		
+		return score;
+	}
+    
+    
+
+}

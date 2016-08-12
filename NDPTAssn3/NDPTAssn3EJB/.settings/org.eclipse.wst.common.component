@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?><project-modules id="moduleCoreId" project-version="1.5.0">
+    <wb-module deploy-name="NDPTAssn3EJB">
+        <wb-resource deploy-path="/" source-path="/ejbModule" tag="defaultRootSource"/>
+        <property name="java-output-path" value="/NDPTAssn3EJB/build/classes"/>
+        <property name="ClientProject" value="NDPTAssn3EJBClient"/>
+        <property name="ClientJARURI" value="NDPTAssn3EJBClient.jar"/>
+    </wb-module>
+</project-modules>
